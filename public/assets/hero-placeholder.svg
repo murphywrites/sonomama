@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EFE7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E8D5C4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hillGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B9E7D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B8060;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hillGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#A3B496;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B9E7D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1920" height="1080" fill="url(#skyGradient)"/>
+
+  <!-- Background hills -->
+  <path d="M0 700 Q400 500 800 650 T1920 550 L1920 1080 L0 1080 Z" fill="url(#hillGradient1)" opacity="0.5"/>
+
+  <!-- Middle hills -->
+  <path d="M0 800 Q300 650 700 750 T1400 700 T1920 750 L1920 1080 L0 1080 Z" fill="url(#hillGradient2)" opacity="0.7"/>
+
+  <!-- Foreground hills -->
+  <path d="M0 900 Q500 800 960 850 T1920 900 L1920 1080 L0 1080 Z" fill="#8B9E7D"/>
+</svg>
