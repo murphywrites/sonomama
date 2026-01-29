@@ -13,9 +13,9 @@ export default function Footer() {
             SONOMAMA
           </Link>
 
-          {/* Japanese tagline */}
-          <p className="font-noto text-lg text-blush mb-8">
-            そのまま | as you are
+          {/* Tagline */}
+          <p className="font-inter text-lg text-blush mb-8">
+            as you are
           </p>
 
           {/* Navigation Links */}

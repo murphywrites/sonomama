@@ -55,11 +55,10 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  SONOMAMA was born from that realization. The name—a Japanese
-                  word meaning &ldquo;as you are&rdquo; or &ldquo;in a natural
-                  state&rdquo;—captures everything I believe about this work:
-                  you don&apos;t need to be fixed. You need to be supported,
-                  strengthened, and seen.
+                  SONOMAMA was born from that realization. The name captures
+                  everything I believe about this work: you don&apos;t need to
+                  be fixed. You need to be supported, strengthened, and seen—as
+                  you are.
                 </p>
 
                 <p>
@@ -103,18 +102,15 @@ export default function AboutPage() {
       {/* Philosophy Section */}
       <section className="bg-sage/15 section-padding">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-noto text-2xl md:text-3xl text-terracotta mb-4">
-            そのまま
-          </p>
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
             The SONOMAMA Philosophy
           </h2>
           <p className="font-inter text-lg text-olive/80 leading-relaxed">
-            The Japanese concept of &ldquo;sonomama&rdquo; invites us to embrace
-            things as they naturally are—without force, without judgment. In
-            perinatal care, this means honoring your body&apos;s wisdom,
-            respecting your timeline, and building strength from a place of
-            acceptance rather than pressure to &ldquo;bounce back.&rdquo;
+            At SONOMAMA, we embrace things as they naturally are—without force,
+            without judgment. In perinatal care, this means honoring your
+            body&apos;s wisdom, respecting your timeline, and building strength
+            from a place of acceptance rather than pressure to &ldquo;bounce
+            back.&rdquo;
           </p>
         </div>
       </section>

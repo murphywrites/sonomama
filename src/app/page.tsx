@@ -16,7 +16,6 @@ const valueProps: ValueProp[] = [
     title: "As You Are",
     description:
       "Embrace your natural state. No pressure to bounce back. Just forward, at your pace.",
-    japaneseText: "そのまま (sonomama)",
   },
 ];
 
@@ -26,7 +25,6 @@ export default function Home() {
       {/* Hero Section */}
       <Hero
         title="SONOMAMA"
-        japaneseText="そのまま"
         subtitle="Strength & Movement Coaching for Moms"
         description="Perinatal Physical Therapy rooted in evidence, guided by compassion, honoring you as you are."
         primaryCta={{ text: "Explore Resources", href: "/resources" }}
