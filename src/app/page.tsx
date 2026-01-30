@@ -1,4 +1,7 @@
 import Hero from "@/components/Hero";
+import MeetYourCoach from "@/components/MeetYourCoach";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import EmailSignup from "@/components/EmailSignup";
 import type { ValueProp } from "@/lib/types";
 
 const valueProps: ValueProp[] = [
@@ -58,6 +61,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Meet Your Coach Section */}
+      <MeetYourCoach />
+
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
+
+      {/* Email Signup Section */}
+      <EmailSignup />
 
       {/* Call to Action Section */}
       <section className="bg-sage/20 section-padding">
