@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --terracotta: #C17A5C;
-  --terracotta-dark: #A66B4F;
-  --sage-green: #8B9E7D;
-  --warm-cream: #F5EFE7;
-  --deep-olive: #3D4B3A;
-  --blush-pink: #E8D5C4;
+  /* Miami Vice color palette - update hex values here to change site-wide */
+  --terracotta: #FF2D92;       /* Hot pink - CTAs, accents, links */
+  --terracotta-dark: #E0247F;
+  --sage-green: #00E5FF;       /* Cyan/turquoise - section backgrounds */
+  --warm-cream: #FFF8F5;       /* Warm off-white - base background */
+  --deep-olive: #0D1B2A;       /* Dark navy - text, headings */
+  --blush-pink: #FFB4D2;       /* Soft pink - subtle accents, hovers */
 
   /* Font families */
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
