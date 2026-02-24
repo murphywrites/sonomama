@@ -5,12 +5,12 @@
       <stop offset="100%" style="stop-color:#E8D5C4;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="hillGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#8B9E7D;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6B8060;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#1A8BB5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D6E92;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="hillGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#A3B496;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8B9E7D;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#1570A0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A5580;stop-opacity:1" />
     </linearGradient>
   </defs>
 
@@ -24,5 +24,5 @@
   <path d="M0 800 Q300 650 700 750 T1400 700 T1920 750 L1920 1080 L0 1080 Z" fill="url(#hillGradient2)" opacity="0.7"/>
 
   <!-- Foreground hills -->
-  <path d="M0 900 Q500 800 960 850 T1920 900 L1920 1080 L0 1080 Z" fill="#8B9E7D"/>
+  <path d="M0 900 Q500 800 960 850 T1920 900 L1920 1080 L0 1080 Z" fill="#0D5B8A"/>
 </svg>
