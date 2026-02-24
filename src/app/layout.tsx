@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import LocatorInit from "@/components/LocatorInit";
 
 export const metadata: Metadata = {
   title: "SONOMAMA | Perinatal Strength & Movement Coaching",
@@ -31,6 +32,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-inter antialiased">
+        <LocatorInit />
         <Navigation />
         <main>{children}</main>
         <Footer />
