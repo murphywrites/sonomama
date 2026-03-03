@@ -10,12 +10,12 @@ export default function Footer() {
             href="/"
             className="font-cormorant text-3xl md:text-4xl font-semibold text-cream hover:text-blush transition-colors mb-2"
           >
-            SONOMAMA
+            Erin Murphy, DPT
           </Link>
 
           {/* Tagline */}
           <p className="font-inter text-lg text-blush mb-8">
-            as you are
+            Perinatal Strength & Movement
           </p>
 
           {/* Navigation Links */}
@@ -64,7 +64,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="font-inter text-sm text-cream/60">
-            © {new Date().getFullYear()} SONOMAMA. All rights reserved.
+            © {new Date().getFullYear()} Erin Murphy, DPT. All rights reserved.
           </p>
         </div>
       </div>

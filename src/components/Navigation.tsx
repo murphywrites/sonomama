@@ -44,7 +44,7 @@ export default function Navigation() {
             href="/"
             className="font-cormorant text-2xl md:text-3xl font-semibold text-olive tracking-wide hover:text-terracotta transition-colors"
           >
-            SONOMAMA
+            ERIN MURPHY, DPT
           </Link>
 
           {/* Desktop Navigation */}

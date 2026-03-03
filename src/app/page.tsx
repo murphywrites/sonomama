@@ -24,11 +24,11 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <Hero
-        title="SONOMAMA"
+        title="Erin Murphy, DPT"
         subtitle="Strength & Movement Coaching for Moms"
         description="Perinatal Physical Therapy rooted in evidence, guided by compassion, honoring you as you are."
         primaryCta={{ text: "Explore Resources", href: "/resources" }}
-        secondaryCta={{ text: "Meet Erin", href: "/about" }}
+        secondaryCta={{ text: "About Me", href: "/about" }}
         backgroundImage="/assets/hero-placeholder.svg"
         fullHeight
       />
