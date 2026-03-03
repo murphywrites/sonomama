@@ -47,47 +47,57 @@ export default function Hero({
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center pt-20">
-        {/* Main Title */}
-        <h1 className="font-cormorant text-hero-mobile md:text-hero font-semibold text-olive mb-4 tracking-wide">
-          {title}
-        </h1>
+        {/* Liquid Glass Container */}
+        <div className="relative p-8 md:p-12 rounded-3xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden">
+          {/* Glass shimmer effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/10 pointer-events-none" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-terracotta/20 via-sage/20 to-terracotta/20 blur-2xl opacity-30 pointer-events-none" />
 
-        {/* Japanese Text */}
-        {japaneseText && (
-          <p className="font-noto text-2xl md:text-3xl text-terracotta mb-6">
-            {japaneseText}
-          </p>
-        )}
+          {/* Content inside glass */}
+          <div className="relative z-10">
+            {/* Main Title */}
+            <h1 className="font-cormorant text-hero-mobile md:text-hero font-semibold text-olive mb-4 tracking-wide">
+              {title}
+            </h1>
 
-        {/* Subtitle */}
-        {subtitle && (
-          <h2 className="font-cormorant text-xl md:text-2xl text-olive/90 mb-4">
-            {subtitle}
-          </h2>
-        )}
-
-        {/* Description */}
-        {description && (
-          <p className="font-inter text-lg md:text-xl text-olive/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-            {description}
-          </p>
-        )}
-
-        {/* CTAs */}
-        {(primaryCta || secondaryCta) && (
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {primaryCta && (
-              <Button variant="primary" href={primaryCta.href}>
-                {primaryCta.text}
-              </Button>
+            {/* Japanese Text */}
+            {japaneseText && (
+              <p className="font-noto text-2xl md:text-3xl text-terracotta mb-6">
+                {japaneseText}
+              </p>
             )}
-            {secondaryCta && (
-              <Button variant="secondary" href={secondaryCta.href}>
-                {secondaryCta.text}
-              </Button>
+
+            {/* Subtitle */}
+            {subtitle && (
+              <h2 className="font-cormorant text-xl md:text-2xl text-olive/90 mb-4">
+                {subtitle}
+              </h2>
+            )}
+
+            {/* Description */}
+            {description && (
+              <p className="font-inter text-lg md:text-xl text-olive/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+                {description}
+              </p>
+            )}
+
+            {/* CTAs */}
+            {(primaryCta || secondaryCta) && (
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                {primaryCta && (
+                  <Button variant="primary" href={primaryCta.href}>
+                    {primaryCta.text}
+                  </Button>
+                )}
+                {secondaryCta && (
+                  <Button variant="secondary" href={secondaryCta.href}>
+                    {secondaryCta.text}
+                  </Button>
+                )}
+              </div>
             )}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
