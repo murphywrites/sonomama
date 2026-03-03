@@ -2,9 +2,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Erin | SONOMAMA",
+  title: "About | Erin Murphy, DPT",
   description:
-    "Meet Erin, a Doctor of Physical Therapy and perinatal specialist supporting moms through pregnancy, postpartum, and beyond.",
+    "Meet Erin Murphy, a Doctor of Physical Therapy and perinatal specialist supporting moms through pregnancy, postpartum, and beyond.",
 };
 
 const credentials = [
@@ -27,7 +27,7 @@ export default function AboutPage() {
               <div className="relative aspect-square rounded-2xl overflow-hidden bg-blush">
                 <Image
                   src="/assets/erin-placeholder.svg"
-                  alt="Erin - Physical Therapist and founder of SONOMAMA"
+                  alt="Erin Murphy - Doctor of Physical Therapy"
                   fill
                   className="object-cover"
                   priority
@@ -55,10 +55,9 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  SONOMAMA was born from that realization. The name captures
-                  everything I believe about this work: you don&apos;t need to
-                  be fixed. You need to be supported, strengthened, and seen—as
-                  you are.
+                  My practice was born from that realization: you don&apos;t
+                  need to be fixed. You need to be supported, strengthened, and
+                  seen—as you are.
                 </p>
 
                 <p>
@@ -103,10 +102,10 @@ export default function AboutPage() {
       <section className="bg-sage/15 section-padding">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
-            The SONOMAMA Philosophy
+            My Philosophy
           </h2>
           <p className="font-inter text-lg text-olive/80 leading-relaxed">
-            At SONOMAMA, we embrace things as they naturally are—without force,
+            I believe in embracing things as they naturally are—without force,
             without judgment. In perinatal care, this means honoring your
             body&apos;s wisdom, respecting your timeline, and building strength
             from a place of acceptance rather than pressure to &ldquo;bounce

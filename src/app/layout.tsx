@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import LocatorInit from "@/components/LocatorInit";
 
 export const metadata: Metadata = {
-  title: "SONOMAMA | Perinatal Strength & Movement Coaching",
+  title: "Erin Murphy, DPT | Perinatal Strength & Movement Coaching",
   description:
     "Evidence-based physical therapy and strength coaching for moms. Perinatal specialists supporting your journey with compassion and expertise.",
   keywords:
@@ -32,7 +31,6 @@ export default function RootLayout({
         />
       </head>
       <body className="font-inter antialiased">
-        <LocatorInit />
         <Navigation />
         <main>{children}</main>
         <Footer />
