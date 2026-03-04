@@ -33,6 +33,12 @@ export default function Footer() {
               About
             </Link>
             <Link
+              href="/programs"
+              className="font-inter text-sm text-cream/80 hover:text-cream transition-colors"
+            >
+              Programs
+            </Link>
+            <Link
               href="/resources"
               className="font-inter text-sm text-cream/80 hover:text-cream transition-colors"
             >

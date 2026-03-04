@@ -92,3 +92,8 @@ h1, h2, h3, h4, h5, h6 {
 .animate-fade-overlay {
   animation: fadeInOverlay 0.2s ease-out forwards;
 }
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}

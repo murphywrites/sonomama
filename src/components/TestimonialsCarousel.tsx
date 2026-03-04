@@ -1,12 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-
-interface Testimonial {
-  quote: string;
-  author: string;
-  context: string;
-}
+import type { Testimonial } from "@/lib/types";
 
 const testimonials: Testimonial[] = [
   {
@@ -38,24 +33,32 @@ const testimonials: Testimonial[] = [
 export default function TestimonialsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const nextTestimonial = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const goToSlide = useCallback((index: number) => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsTransitioning(false);
+    }, 150);
   }, []);
 
-  const prevTestimonial = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
+  const next = useCallback(() => {
+    goToSlide((currentIndex + 1) % testimonials.length);
+  }, [currentIndex, goToSlide]);
 
-  // Auto-advance carousel
+  const prev = useCallback(() => {
+    goToSlide((currentIndex - 1 + testimonials.length) % testimonials.length);
+  }, [currentIndex, goToSlide]);
+
+  // Auto-advance
   useEffect(() => {
     if (isPaused) return;
-
-    const interval = setInterval(nextTestimonial, 6000);
+    const interval = setInterval(next, 6000);
     return () => clearInterval(interval);
-  }, [isPaused, nextTestimonial]);
+  }, [isPaused, next]);
+
+  const t = testimonials[currentIndex];
 
   return (
     <section className="bg-blush/30 section-padding">
@@ -65,81 +68,88 @@ export default function TestimonialsCarousel() {
         </h2>
 
         <div
-          className="relative"
+          className="flex items-center gap-4 md:gap-8"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Testimonial Content */}
-          <div className="text-center min-h-[200px] flex flex-col justify-center">
-            <blockquote className="font-cormorant text-xl md:text-2xl text-olive leading-relaxed mb-6 italic">
-              &ldquo;{testimonials[currentIndex].quote}&rdquo;
+          {/* Prev Arrow */}
+          <button
+            onClick={prev}
+            className="shrink-0 p-2 text-olive/40 hover:text-olive transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 rounded-full"
+            aria-label="Previous testimonial"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Slide content */}
+          <div
+            className={`flex-1 text-center transition-opacity duration-300 ${
+              isTransitioning ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            {/* Avatar */}
+            <div className="flex justify-center mb-5">
+              {t.photo ? (
+                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-blush shadow-sm">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={t.photo} alt={t.author} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className="w-14 h-14 rounded-full bg-sage/30 border-2 border-blush flex items-center justify-center">
+                  <span className="font-cormorant text-xl font-semibold text-olive">
+                    {t.author.charAt(0)}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <blockquote className="font-cormorant text-xl md:text-2xl text-olive leading-relaxed mb-5 italic min-h-[80px]">
+              &ldquo;{t.quote}&rdquo;
             </blockquote>
-            <div>
-              <p className="font-inter font-medium text-olive">
-                {testimonials[currentIndex].author}
-              </p>
-              <p className="font-inter text-sm text-olive/60">
-                {testimonials[currentIndex].context}
-              </p>
+
+            <p className="font-inter font-medium text-olive">{t.author}</p>
+            <p className="font-inter text-sm text-olive/60">{t.context}</p>
+
+            {/* Progress bar */}
+            <div className="mt-6 h-0.5 bg-olive/10 rounded-full overflow-hidden max-w-xs mx-auto">
+              {!isPaused && (
+                <div
+                  key={currentIndex}
+                  className="h-full bg-terracotta/60 rounded-full"
+                  style={{ animation: "progressFill 6s linear forwards" }}
+                />
+              )}
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goToSlide(i)}
+                  className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 ${
+                    i === currentIndex
+                      ? "bg-terracotta w-6"
+                      : "bg-olive/30 hover:bg-olive/50 w-2"
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Next Arrow */}
           <button
-            onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-8 p-2 text-olive/40 hover:text-olive transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 rounded-full"
-            aria-label="Previous testimonial"
-          >
-            <svg
-              className="w-6 h-6 md:w-8 md:h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-8 p-2 text-olive/40 hover:text-olive transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 rounded-full"
+            onClick={next}
+            className="shrink-0 p-2 text-olive/40 hover:text-olive transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 rounded-full"
             aria-label="Next testimonial"
           >
-            <svg
-              className="w-6 h-6 md:w-8 md:h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 ${
-                  index === currentIndex
-                    ? "bg-terracotta w-6"
-                    : "bg-olive/30 hover:bg-olive/50"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

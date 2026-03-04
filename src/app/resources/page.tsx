@@ -2,43 +2,28 @@
 
 import { useState } from "react";
 import ResourceCard from "@/components/ResourceCard";
-import ResourceTabs from "@/components/ResourceTabs";
 import EmailCaptureModal from "@/components/EmailCaptureModal";
+import Button from "@/components/Button";
 import type { Resource } from "@/lib/types";
 
-const paidResources: Resource[] = [
+const programTeasers = [
   {
     id: "foundations",
-    title: "Foundations: 6-Week Postpartum Recovery Program",
-    description:
-      "Return to strength safely with expert-guided progressions for your core and pelvic floor.",
+    title: "Foundations",
+    subtitle: "6-Week Postpartum Recovery",
     price: "$147",
-    buttonText: "Get Started",
-    link: "#stripe-link-placeholder",
-    isFree: false,
-    thumbnail: "/assets/resource-thumbnails/resource-1.svg",
   },
   {
     id: "strong-mama",
-    title: "Strong Mama: 12-Week Strength Training",
-    description:
-      "Build full-body strength with programs designed for real mom life—safe, effective, sustainable.",
+    title: "Strong Mama",
+    subtitle: "12-Week Strength Training",
     price: "$297",
-    buttonText: "Get Started",
-    link: "#stripe-link-placeholder",
-    isFree: false,
-    thumbnail: "/assets/resource-thumbnails/resource-2.svg",
   },
   {
     id: "virtual-pt",
-    title: "1:1 Virtual PT Sessions",
-    description:
-      "Personalized assessment and treatment plans for your specific needs.",
+    title: "1:1 Virtual PT",
+    subtitle: "Personalized Sessions",
     price: "$175/session",
-    buttonText: "Book Session",
-    link: "#stripe-link-placeholder",
-    isFree: false,
-    thumbnail: "/assets/resource-thumbnails/resource-3.svg",
   },
 ];
 
@@ -76,7 +61,6 @@ const freeResources: Resource[] = [
 ];
 
 export default function ResourcesPage() {
-  const [activeTab, setActiveTab] = useState<"paid" | "free">("paid");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedResource, setSelectedResource] = useState<Resource | null>(
     null
@@ -87,36 +71,67 @@ export default function ResourcesPage() {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const currentResources = activeTab === "paid" ? paidResources : freeResources;
-
   return (
     <>
       {/* Header Section */}
       <section className="bg-cream pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <h1 className="font-cormorant text-hero-mobile md:text-5xl font-semibold text-olive mb-4">
-            Resources to Support Your Journey
+            Free Resources
           </h1>
           <p className="font-inter text-lg text-olive/80 max-w-2xl mx-auto">
-            From free guides to comprehensive programs, find the support that
-            meets you where you are.
+            Evidence-based guides to support your perinatal journey—yours at no
+            cost.
           </p>
         </div>
       </section>
 
-      {/* Resources Section */}
-      <section className="bg-white section-padding">
-        <div className="max-w-7xl mx-auto">
-          {/* Tabs */}
-          <ResourceTabs activeTab={activeTab} onTabChange={setActiveTab} />
+      {/* Programs Teaser Strip */}
+      <section className="bg-sage/15 py-10 md:py-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <p className="font-inter text-sm text-olive/60 uppercase tracking-wide text-center mb-6">
+            Looking for structured programs?
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            {programTeasers.map((p) => (
+              <div
+                key={p.id}
+                className="bg-cream rounded-xl p-5 text-center shadow-sm"
+              >
+                <h3 className="font-cormorant text-xl font-semibold text-olive mb-1">
+                  {p.title}
+                </h3>
+                <p className="font-inter text-sm text-olive/60 mb-2">
+                  {p.subtitle}
+                </p>
+                <p className="font-inter text-lg font-medium text-terracotta">
+                  {p.price}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Button variant="primary" href="/programs">
+              View All Programs
+            </Button>
+          </div>
+        </div>
+      </section>
 
-          {/* Resource Cards Grid */}
+      {/* Divider */}
+      <div className="flex items-center max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8">
+        <div className="flex-1 border-t border-blush" />
+        <p className="font-inter text-sm text-olive/50 mx-6">
+          Or explore our free resources below
+        </p>
+        <div className="flex-1 border-t border-blush" />
+      </div>
+
+      {/* Free Resources Grid */}
+      <section className="bg-white pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentResources.map((resource) => (
+            {freeResources.map((resource) => (
               <ResourceCard
                 key={resource.id}
                 resource={resource}
@@ -149,7 +164,7 @@ export default function ResourcesPage() {
       {/* Email Capture Modal */}
       <EmailCaptureModal
         isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        onClose={() => setIsModalOpen(false)}
         resource={selectedResource}
       />
     </>

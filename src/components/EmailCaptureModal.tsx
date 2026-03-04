@@ -83,16 +83,27 @@ export default function EmailCaptureModal({
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/email-capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, resourceId: resource?.id }),
+      });
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
+      const data = await response.json();
 
-    // Close modal after showing success message
-    setTimeout(() => {
-      onClose();
-    }, 2000);
+      if (!response.ok) {
+        setErrors({ email: data.error || "Something went wrong. Please try again." });
+        return;
+      }
+
+      setIsSuccess(true);
+      setTimeout(() => { onClose(); }, 2500);
+    } catch {
+      setErrors({ email: "Network error. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;

@@ -83,10 +83,16 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="/resources"
+              href="/programs"
               className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-inter font-medium text-base transition-all duration-200 bg-terracotta text-white hover:bg-terracotta-dark"
             >
-              View All Resources
+              View Programs
+            </a>
+            <a
+              href="/resources"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-inter font-medium text-base transition-all duration-200 border border-terracotta text-terracotta hover:bg-terracotta/10"
+            >
+              Free Resources
             </a>
           </div>
         </div>
