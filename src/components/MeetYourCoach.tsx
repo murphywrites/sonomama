@@ -48,7 +48,7 @@ export default function MeetYourCoach() {
               <Button variant="primary" href="/about">
                 Learn More About Erin
               </Button>
-              <Button variant="secondary" href="/resources">
+              <Button variant="secondary" href="/programs">
                 View Programs
               </Button>
             </div>

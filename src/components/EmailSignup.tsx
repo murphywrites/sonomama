@@ -26,11 +26,26 @@ export default function EmailSignup() {
 
     setIsSubmitting(true);
 
-    // Simulate API call - replace with actual email service integration
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/newsletter-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email }),
+      });
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setIsSuccess(true);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSuccess) {
