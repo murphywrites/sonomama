@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Browser-safe client (anon key)
+// Browser-safe client (publishable key)
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 );
