@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About | Erin Murphy, DPT",
   description:
-    "Meet Erin Murphy, a Doctor of Physical Therapy and perinatal specialist supporting moms through pregnancy, postpartum, and beyond.",
+    "Meet Erin Murphy — physical therapist, mother, and founder of The Murphy Method — supporting moms through pregnancy, postpartum, and beyond.",
 };
 
 const credentials = [
@@ -45,26 +45,49 @@ export default function AboutPage() {
                 <p>
                   I&apos;m a physical therapist, a mother, and someone who
                   believes deeply that your body is capable of incredible
-                  things—especially when you meet it where it is.
+                  things. I mean&hellip;if you&apos;re reading this you likely
+                  are building or have built a baby!
                 </p>
 
                 <p>
-                  After navigating my own perinatal journey, I saw how few
-                  resources truly honored the complexity of this transition.
-                  Motherhood changes us, and movement should change with us.
+                  What has now become The Murphy Method was conceived before I
+                  was even pregnant myself, as I saw a huge need among my
+                  friends and family who were entering motherhood. I have been
+                  shocked by how little women are educated and empowered to move
+                  their bodies effectively and appropriately during this time
+                  period&mdash;whether it be women who were scared to exercise
+                  at all while pregnant or those who went immediately for a
+                  5-mile run after their 6-week appointment that
+                  &ldquo;cleared&rdquo; them for exercise.
                 </p>
 
                 <p>
-                  My practice was born from that realization: you don&apos;t
-                  need to be fixed. You need to be supported, strengthened, and
-                  seen—as you are.
+                  Lots of well-intentioned advice others may offer you is
+                  outdated, many online workout plans or recommendations really
+                  miss the mark, and our medical system often does not allow for
+                  sufficient time with providers for education and dialogue.
+                </p>
+
+                <p>
+                  After navigating my own perinatal journey, I saw even more
+                  clearly how few resources truly honored the complexity of this
+                  transition, were based in up-to-date evidence, and were
+                  actually realistic and approachable. That made me commit anew
+                  to pursuing more expertise in the perinatal time frame and
+                  building out even more my offerings for moms.
+                </p>
+
+                <p>
+                  I am proud of what I have created with The Murphy Method and I
+                  hope it helps you feel seen, supported, and strong as hell.
                 </p>
 
                 <p>
                   Whether you&apos;re managing pelvic floor challenges,
-                  rebuilding core strength, or simply wanting to feel strong in
-                  your changing body, I&apos;m here to guide you with expertise,
-                  empathy, and evidence.
+                  preparing for birth, rebuilding core strength, progressing
+                  back toward running, or simply wanting to feel strong in your
+                  changing body, I&apos;m here to guide you with expertise,
+                  encouragement, and empathy.
                 </p>
 
                 <p className="font-medium text-olive">
@@ -102,14 +125,14 @@ export default function AboutPage() {
       <section className="bg-sage/15 section-padding">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
-            My Philosophy
+            The Murphy Method
           </h2>
           <p className="font-inter text-lg text-olive/80 leading-relaxed">
-            I believe in embracing things as they naturally are—without force,
-            without judgment. In perinatal care, this means honoring your
-            body&apos;s wisdom, respecting your timeline, and building strength
-            from a place of acceptance rather than pressure to &ldquo;bounce
-            back.&rdquo;
+            Evidence-based, realistic, and built for real mom life. The Murphy
+            Method exists because you deserve guidance that actually honors
+            where you are&mdash;not outdated advice, not generic plans, and not
+            a 6-week clearance that treats birth recovery as a checkbox. Just
+            expert support that meets you exactly as you are.
           </p>
         </div>
       </section>

@@ -33,14 +33,16 @@ export default function MeetYourCoach() {
 
             <div className="space-y-4 font-inter text-olive/85 leading-relaxed mb-8">
               <p>
-                As a physical therapist and mother, I understand the profound
-                transformation your body goes through during pregnancy and
-                postpartum.
+                I&apos;m a physical therapist, a mother, and someone who
+                believes deeply that your body is capable of incredible
+                things&mdash;especially during the perinatal journey.
               </p>
               <p>
-                My approach combines evidence-based physical therapy with
-                compassionate coaching—meeting you exactly where you are, without
-                pressure to &ldquo;bounce back.&rdquo;
+                The Murphy Method was born from seeing how little women are
+                truly educated and empowered to move during this time. My
+                approach is evidence-based, realistic, and built for real mom
+                life&mdash;no pressure to &ldquo;bounce back,&rdquo; just
+                expert support to help you feel strong and seen.
               </p>
             </div>
 
