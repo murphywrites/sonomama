@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "./Button";
 
 interface HeroProps {
@@ -55,6 +56,17 @@ export default function Hero({
 
           {/* Content inside glass */}
           <div className="relative z-10">
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/assets/logos/murphymethodlogo.png"
+                alt="The Murphy Method"
+                width={640}
+                height={640}
+                className="w-40 h-40 md:w-52 md:h-52 object-contain"
+                priority
+              />
+            </div>
+
             {/* Main Title */}
             <h1 className="font-cormorant text-hero-mobile md:text-hero font-semibold text-olive mb-4 tracking-wide">
               {title}
