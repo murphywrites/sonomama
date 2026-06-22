@@ -1,4 +1,5 @@
 import Button from "./Button";
+import VideoWall from "./VideoWall";
 
 interface HeroProps {
   title: string;
@@ -14,6 +15,10 @@ interface HeroProps {
     href: string;
   };
   backgroundImage?: string;
+  /** Render the animated wall of videos behind the hero content. */
+  videoBackground?: boolean;
+  /** Optional custom set of YouTube IDs for the video wall. */
+  videoIds?: string[];
   fullHeight?: boolean;
 }
 
@@ -25,6 +30,8 @@ export default function Hero({
   primaryCta,
   secondaryCta,
   backgroundImage,
+  videoBackground = false,
+  videoIds,
   fullHeight = true,
 }: HeroProps) {
   return (
@@ -33,8 +40,24 @@ export default function Hero({
         fullHeight ? "min-h-screen" : "min-h-[60vh]"
       } bg-cream overflow-hidden`}
     >
+      {/* Animated video wall background */}
+      {videoBackground && (
+        <>
+          <VideoWall videoIds={videoIds} />
+          {/* Legibility scrim: base wash + a brighter glow behind the text */}
+          <div className="absolute inset-0 bg-cream/55" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(60% 55% at 50% 45%, rgba(245,239,231,0.92) 0%, rgba(245,239,231,0.65) 45%, rgba(245,239,231,0.25) 100%)",
+            }}
+          />
+        </>
+      )}
+
       {/* Background Image */}
-      {backgroundImage && (
+      {backgroundImage && !videoBackground && (
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${backgroundImage})` }}

@@ -91,3 +91,34 @@ h1, h2, h3, h4, h5, h6 {
 .animate-fade-overlay {
   animation: fadeInOverlay 0.2s ease-out forwards;
 }
+
+/* VideoWall — vertically drifting columns of video tiles */
+@keyframes wallScrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes wallScrollDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* The duplicated track is twice the visible content, so the columns must be
+   tall enough that the loop never reveals an empty edge. */
+.video-wall__track {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-wall__track {
+    animation: none !important;
+  }
+}

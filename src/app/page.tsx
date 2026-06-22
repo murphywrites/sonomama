@@ -31,7 +31,7 @@ export default function Home() {
         description="Perinatal Physical Therapy rooted in evidence, guided by compassion, honoring you as you are."
         primaryCta={{ text: "Explore Resources", href: "/resources" }}
         secondaryCta={{ text: "Meet Erin", href: "/about" }}
-        backgroundImage="/assets/hero-placeholder.svg"
+        videoBackground
         fullHeight
       />
 
