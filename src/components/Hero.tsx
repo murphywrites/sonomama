@@ -1,10 +1,5 @@
 import Image from "next/image";
 import Button from "./Button";
-<<<<<<< Updated upstream
-=======
-import SectionFade from "./SectionFade";
-import VideoWall from "./VideoWall";
->>>>>>> Stashed changes
 
 interface HeroProps {
   title: string;
@@ -51,7 +46,6 @@ export default function Hero({
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-sage/10 rounded-full -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-48 h-48 md:w-72 md:h-72 bg-blush/20 rounded-full translate-y-1/2 -translate-x-1/2" />
 
-<<<<<<< Updated upstream
       {/* Fade into next section — sits above bg, below content */}
       <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-transparent from-60% to-white pointer-events-none z-[5]" />
 
@@ -62,16 +56,6 @@ export default function Hero({
           {/* Glass shimmer effect */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/10 pointer-events-none" />
           <div className="absolute -inset-1 bg-gradient-to-r from-terracotta/20 via-sage/20 to-terracotta/20 blur-2xl opacity-30 pointer-events-none" />
-=======
-      <SectionFade to="white" />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center pt-20 pb-20 md:pb-28">
-        {/* Main Title */}
-        <h1 className="font-cormorant text-hero-mobile md:text-hero font-semibold text-olive mb-4 tracking-wide">
-          {title}
-        </h1>
->>>>>>> Stashed changes
 
           {/* Content inside glass */}
           <div className="relative z-10">
