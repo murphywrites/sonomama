@@ -1,7 +1,11 @@
 import Hero from "@/components/Hero";
 import MeetYourCoach from "@/components/MeetYourCoach";
+<<<<<<< Updated upstream
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import EmailSignup from "@/components/EmailSignup";
+=======
+import SectionFade from "@/components/SectionFade";
+>>>>>>> Stashed changes
 import type { ValueProp } from "@/lib/types";
 
 const valueProps: ValueProp[] = [
@@ -47,7 +51,11 @@ export default function Home() {
       
 
       {/* Value Props Section */}
+<<<<<<< Updated upstream
       <section className="relative bg-white section-padding pt-0 md:pt-4">
+=======
+      <section className="relative overflow-hidden bg-white section-padding pt-0 md:pt-4 pb-24 md:pb-32">
+>>>>>>> Stashed changes
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-stretch">
             {valueProps.map((prop, index) => (
@@ -73,8 +81,10 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <SectionFade to="cream" />
       </section>
 
+<<<<<<< Updated upstream
       {/* Meet Your Coach Section */}
       <MeetYourCoach />
 
@@ -84,8 +94,12 @@ export default function Home() {
       {/* Email Signup Section */}
       <EmailSignup />
 
+=======
+      <MeetYourCoach />
+
+>>>>>>> Stashed changes
       {/* Call to Action Section */}
-      <section className="bg-sage/20 section-padding">
+      <section className="relative overflow-hidden bg-sage/20 section-padding pb-24 md:pb-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
             Ready to Begin Your Journey?
@@ -105,6 +119,7 @@ export default function Home() {
             </a>
           </div>
         </div>
+        <SectionFade to="olive" />
       </section>
     </>
   );
