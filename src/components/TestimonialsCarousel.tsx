@@ -6,27 +6,39 @@ import type { Testimonial } from "@/lib/types";
 const testimonials: Testimonial[] = [
   {
     quote:
-      "Erin's approach completely changed how I view my postpartum body. Instead of pushing to 'get back' to where I was, she helped me build something even stronger.",
-    author: "Sarah M.",
-    context: "4 months postpartum",
+      "I started Erin's program in my first trimester, and I can honestly say that it was a tremendous aid throughout my pregnancy and postpartum journey. Erin was always encouraging, created workouts that were tailored to each stage of my journey, and I knew that I could trust her expertise. My delivery and postpartum recovery experience were incredibly positive, and I truly believe that the work I did through Erin's program made this possible! I have bragged about this program to all of my friends— with all of the misinformation and conflicting opinions on what to do/what not to do during your pregnancy, it's SO comforting to have a trusted coach like Erin in your corner!!",
+    author: "Abbie",
+    context: "",
   },
   {
     quote:
-      "I finally understand my pelvic floor and core. The education combined with practical exercises gave me confidence I didn't know I was missing.",
-    author: "Jessica T.",
-    context: "2nd pregnancy",
+      "This pregnancy workout program really helped me stay strong while also preparing me for birth and postpartum recovery. I love that the exercises are tailored for each trimester and there are options to modify based on your individual needs. It allowed me to keep moving and feel pretty comfortable even at the end of my pregnancy. I really relied on the core strength I built and the stretching I had done through the program once I was in my first few weeks postpartum and I'm sure it had a positive impact on my C-section recovery!",
+    author: "Cassie",
+    context: "",
   },
   {
     quote:
-      "After two C-sections, I felt disconnected from my body. Working with Erin helped me rebuild not just strength, but trust in myself.",
-    author: "Amanda R.",
-    context: "Mom of two",
+      "Erin helped me build back my strength and get back to the things I love to do, like running, postpartum. It's not a quick fix (if only that existed!), but it was an effective approach to building back to my strongest self. This program helped me keep focused and committed during the first year of my baby's life and it gave me one less thing to have to think about amidst the million decisions a moms in a day. Plus, Erin offered good support and motivation with reminding me that it took 9 months to build my child and to offer myself that same patience with re-building my strength and endurance.",
+    author: "Meg",
+    context: "",
   },
   {
     quote:
-      "The evidence-based approach was exactly what I needed. No gimmicks, no pressure—just real support for where I was in my journey.",
-    author: "Michelle K.",
-    context: "1 year postpartum",
+      "As a first time mom, everything about pregnancy was new to me and a little overwhelming. I wanted to keep up my habit of regular strength training and be as prepared as possible for birth. There are SO many different pregnancy workout programs to choose from and I'm so happy to have found The Murphy Method. This plan is very well informed and I felt confident trusting the information. Erin is a Doctor of Physical Therapist and has additional training and education in prenatal and postpartum exercise. I knew working with Erin would support me in my goal of being as physically prepared as possible for birth. It's simple to follow: Erin makes it so easy to understand having correct form with exercises and the purpose behind the movements. I would highly recommend this program to friends and family",
+    author: "Emma",
+    context: "",
+  },
+  {
+    quote:
+      "This postpartum movement program supported my C-section recovery really well. My favorite part is the flexibility - I could do the exercises almost anywhere, anytime, as a set or individually - which is so important when you have a new baby to take care of. Plus the exercises just feel good! After major abdominal surgery and lots of picking baby up and down during the day (once I was cleared to do so), I kept coming back to this program because it helped a ton with relieving back soreness and rebuilding core strength.",
+    author: "Cassie",
+    context: "",
+  },
+  {
+    quote:
+      "I definitely attribute feeling good and being able to stay active through the end of 3rd trimester to this program! It adapted to my needs throughout pregnancy and helped me feel confident that I was doing the most effective things for both baby and me to prep for birth",
+    author: "Kate",
+    context: "",
   },
 ];
 
@@ -110,7 +122,9 @@ export default function TestimonialsCarousel() {
             </blockquote>
 
             <p className="font-inter font-medium text-olive">{t.author}</p>
-            <p className="font-inter text-sm text-olive/60">{t.context}</p>
+            {t.context && (
+              <p className="font-inter text-sm text-olive/60">{t.context}</p>
+            )}
 
             {/* Progress bar */}
             <div className="mt-6 h-0.5 bg-olive/10 rounded-full overflow-hidden max-w-xs mx-auto">
