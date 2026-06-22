@@ -44,24 +44,29 @@ export default function Home() {
         fullHeight
       />
 
+      
+
       {/* Value Props Section */}
-      <section className="bg-white section-padding">
+      <section className="relative bg-white section-padding pt-0 md:pt-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-stretch">
             {valueProps.map((prop, index) => (
               <div
                 key={index}
-                className="text-center p-6 md:p-8"
+                className="flex flex-col h-full p-6 md:p-8 text-center md:text-left"
               >
-                <h3 className="font-cormorant text-section-mobile md:text-2xl font-semibold text-olive mb-4">
-                  {prop.title}
-                </h3>
+                <div className="mb-5">
+                  <h3 className="font-cormorant text-section-mobile md:text-2xl font-semibold text-olive mb-3 min-h-[3.5rem] md:min-h-[4.5rem] flex items-center justify-center md:justify-start">
+                    {prop.title}
+                  </h3>
+                  <div className="w-10 h-0.5 bg-terracotta/60 mx-auto md:mx-0" />
+                </div>
                 {prop.japaneseText && (
                   <p className="font-noto text-terracotta text-sm mb-2">
                     {prop.japaneseText}
                   </p>
                 )}
-                <p className="font-inter text-olive/80 leading-relaxed">
+                <p className="font-inter text-olive/80 leading-relaxed flex-1">
                   {prop.description}
                 </p>
               </div>

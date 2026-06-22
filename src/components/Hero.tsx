@@ -46,8 +46,11 @@ export default function Hero({
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-sage/10 rounded-full -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-48 h-48 md:w-72 md:h-72 bg-blush/20 rounded-full translate-y-1/2 -translate-x-1/2" />
 
+      {/* Fade into next section — sits above bg, below content */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-transparent from-60% to-white pointer-events-none z-[5]" />
+
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center pt-20">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center pt-20 pb-20 md:pb-28">
         {/* Liquid Glass Container */}
         <div className="relative p-6 md:p-8 rounded-3xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden">
           {/* Glass shimmer effect */}
