@@ -1,8 +1,54 @@
 import Button from "./Button";
-import type { Program } from "@/lib/types";
+import type { Program, ProgramFeature } from "@/lib/types";
 
 interface ProgramCardProps {
   program: Program;
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      className="w-4 h-4 text-terracotta mt-0.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 13l4 4L19 7"
+      />
+    </svg>
+  );
+}
+
+function FeatureItem({ feature }: { feature: ProgramFeature }) {
+  if (typeof feature === "string") {
+    return (
+      <li className="flex items-start gap-2 font-inter text-sm text-olive/80">
+        <CheckIcon />
+        {feature}
+      </li>
+    );
+  }
+
+  return (
+    <li className="font-inter text-sm text-olive/80">
+      <div className="flex items-start gap-2">
+        <CheckIcon />
+        {feature.label}
+      </div>
+      <ul className="mt-2 ml-6 space-y-2">
+        {feature.children.map((child, i) => (
+          <li key={i} className="flex items-start gap-2 pl-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-terracotta/70 mt-2 shrink-0" />
+            {child}
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
 }
 
 export default function ProgramCard({ program }: ProgramCardProps) {
@@ -19,29 +65,16 @@ export default function ProgramCard({ program }: ProgramCardProps) {
           {program.title}
         </h3>
 
-        <p className="font-inter text-olive/75 leading-relaxed mb-6">
-          {program.description}
-        </p>
+        {program.description && (
+          <p className="font-inter text-olive/75 leading-relaxed mb-6">
+            {program.description}
+          </p>
+        )}
 
         {/* Features */}
-        <ul className="space-y-2 mb-8 flex-1">
+        <ul className="space-y-3 mb-8 flex-1">
           {program.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2 font-inter text-sm text-olive/80">
-              <svg
-                className="w-4 h-4 text-terracotta mt-0.5 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              {feature}
-            </li>
+            <FeatureItem key={i} feature={feature} />
           ))}
         </ul>
 

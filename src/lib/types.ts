@@ -20,6 +20,13 @@ export interface ValueProp {
   japaneseText?: string;
 }
 
+export interface ProgramFeatureGroup {
+  label: string;
+  children: string[];
+}
+
+export type ProgramFeature = string | ProgramFeatureGroup;
+
 export interface Program {
   id: string;
   title: string;
@@ -29,7 +36,7 @@ export interface Program {
   buttonText: string;
   stripeLink: string;
   thumbnail?: string;
-  features: string[];
+  features: ProgramFeature[];
   badge?: string;
 }
 

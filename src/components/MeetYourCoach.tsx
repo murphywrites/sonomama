@@ -19,6 +19,14 @@ export default function MeetYourCoach() {
               />
             </div>
           </div>
+{/* 
+          Erin Murphy, PT, DPT
+Doctor of Physical Therapy | Pregnancy and Postpartum Corrective Exercise Specialist
+As a lifelong athlete, physical therapist, and mother, I understand firsthand the profound transformation your body goes through during pregnancy and postpartum. It is incredible! But it can also be humbling.
+
+
+I also have the knowledge and expertise to create something better than your run-of-the-mill influencer workout plan for moms. My approach combines evidence-based exercise with compassionate and supportive coaching to help you reach your goals in any season of life. */}
+
 
           {/* Content */}
           <div className="order-2 lg:order-2 text-center lg:text-left">
@@ -29,21 +37,15 @@ export default function MeetYourCoach() {
               Erin Murphy, PT, DPT
             </h2>
             <p className="font-inter text-sm text-olive/60 mb-6">
-              Doctor of Physical Therapy | Perinatal & Postpartum Specialist
+              Doctor of Physical Therapy | Pregnancy and Postpartum Corrective Exercise Specialist
             </p>
 
             <div className="space-y-4 font-inter text-olive/85 leading-relaxed mb-8">
               <p>
-                I&apos;m a physical therapist, a mother, and someone who
-                believes deeply that your body is capable of incredible
-                things&mdash;especially during the perinatal journey.
+              As a lifelong athlete, physical therapist, and mother, I understand firsthand the profound transformation your body goes through during pregnancy and postpartum. It is incredible! But it can also be humbling.
               </p>
               <p>
-                The Murphy Method was born from seeing how little women are
-                truly educated and empowered to move during this time. My
-                approach is evidence-based, realistic, and built for real mom
-                life&mdash;no pressure to &ldquo;bounce back,&rdquo; just
-                expert support to help you feel strong and seen.
+              I also have the knowledge and expertise to create something better than your run-of-the-mill influencer workout plan for moms. My approach combines evidence-based exercise with compassionate and supportive coaching to help you reach your goals in any season of life.
               </p>
             </div>
 

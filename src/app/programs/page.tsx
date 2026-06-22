@@ -8,61 +8,133 @@ export const metadata: Metadata = {
     "Structured perinatal strength and movement programs designed by a Doctor of Physical Therapy.",
 };
 
+// Programs:
+// Pregnancy Workout Plans synced to where you are in your pregnancy
+// -2nd Trimester
+// 	-3x/week full body strength 
+// -3rd Trimester 
+// 	-3x/week full body strength 
+// 	-Birth prep circuit, daily as desired
+// -Late 3rd Trimester & Birth Prep
+// 	-3x/week full body strength workouts, shortened
+// 	-Mid-pelvis and pelvic outlet targeted routines
+// 	-Labor prep cardio and relaxation 
+// 	-Birth prep circuit
+
+// Postpartum
+// -Early Postpartum Gentle Mobility and Reconnection Guide
+// 	-Daily gentle mobility, core connection, breathing (most of which can be done in bed!), 
+// education, general activity progression recommendations for the early postpartum days
+// -Postpartum Strength Weeks 6-14 Vaginal Delivery
+// 	-FOUNDATIONS PP Daily-ish Mobility, Breathing and Core Connection
+// -3x/week strength workouts; Push, Pull, & Full Body Focus
+// -Postpartum Strength Weeks 6-14 Cesarean Delivery
+// -FOUNDATIONS PP Daily-ish Mobility, Massage, Breathing and Core Connection
+// -3x/week strength workouts; Push, Pull, & Full Body Focus
+
+// Moms in any phase of life
+// -Start with Strength, 3x/week full body strength workouts with a new block every 8 weeks
+
+
 const programs: Program[] = [
   {
-    id: "foundations",
-    title: "Foundations",
+    id: "pregnancy-synced",
+    title: "Pregnancy",
     description:
-      "Return to strength safely with expert-guided progressions for your core and pelvic floor. Designed for the early postpartum period.",
-    price: "$147",
+      "Pregnancy Workout Plans synced to where you are in your pregnancy",
+      price: "$147",
     buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-1.svg",
     features: [
-      "6-week structured program",
-      "Core & pelvic floor progressions",
-      "Video demonstrations for every exercise",
-      "PDF guide included",
-      "Lifetime access",
+      {
+        label: "2nd Trimester",
+        children: ["3x/week full body strength"],
+      },
+      {
+        label: "3rd Trimester",
+        children: [
+          "3x/week full body strength",
+          "Birth prep circuit, daily as desired",
+        ],
+      },
+      {
+        label: "Late 3rd Trimester & Birth Prep",
+        children: [
+          "3x/week full body strength workouts, shortened",
+          "Mid-pelvis and pelvic outlet targeted routines",
+          "Labor prep cardio and relaxation",
+          "Birth prep circuit",
+        ],
+      },
     ],
   },
   {
-    id: "strong-mama",
-    title: "Strong Mama",
-    description:
-      "Build full-body strength with a program designed for real mom life—safe, effective, and sustainable for the long haul.",
+    id: "postpartum",
+    title: "Postpartum",
+    description: "",
     price: "$297",
     buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-2.svg",
-    badge: "Most Popular",
     features: [
-      "12-week strength training program",
-      "Progressive overload built in",
-      "Modifications for every fitness level",
-      "Nutrition guidance PDF",
-      "Community access",
-      "Lifetime access",
+      {
+        label: "Early Postpartum Gentle Mobility and Reconnection Guide",
+        children: [
+          "Daily gentle mobility, core connection, breathing (most of which can be done in bed!), education, general activity progression recommendations for the early postpartum days",
+        ],
+      },
+      {
+        label: "Postpartum Strength Weeks 6-14 Vaginal Delivery",
+        children: [
+          "FOUNDATIONS PP Daily-ish Mobility, Breathing and Core Connection",
+          "3x/week strength workouts; Push, Pull, & Full Body Focus",
+        ],
+      },
+      {
+        label: "Postpartum Strength Weeks 6-14 Cesarean Delivery",
+        children: [
+          "FOUNDATIONS PP Daily-ish Mobility, Massage, Breathing and Core Connection",
+          "3x/week strength workouts; Push, Pull, & Full Body Focus",
+        ],
+      },
     ],
   },
   {
-    id: "virtual-pt",
-    title: "1:1 Virtual PT",
-    description:
-      "Personalized assessment and treatment plan tailored specifically to your body, history, and goals.",
-    price: "$175",
-    priceNote: "/ session",
-    buttonText: "Book a Session",
+    id: "moms-any-phase",
+    title: "Moms in any phase of life",
+    description: "",
+    price: "$147",
+    buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-3.svg",
     features: [
-      "60-minute one-on-one video session",
-      "Comprehensive movement assessment",
-      "Custom exercise prescription",
-      "Session notes & follow-up plan",
-      "Direct messaging support",
+      {
+        label: "Start with Strength",
+        children: [
+          "3x/week full body strength workouts with a new block every 8 weeks",
+        ],
+      },
     ],
   },
+//   {
+//     id: "virtual-pt",
+//     title: "1:1 Virtual PT",
+//     description:
+//       "Personalized assessment and treatment plan tailored specifically to your body, history, and goals.",
+//     price: "$175",
+//     priceNote: "/ session",
+//     buttonText: "Book a Session",
+//     stripeLink: "#stripe-link-placeholder",
+//     thumbnail: "/assets/resource-thumbnails/resource-3.svg",
+//     features: [
+//       "60-minute one-on-one video session",
+//       "Comprehensive movement assessment",
+//       "Custom exercise prescription",
+//       "Session notes & follow-up plan",
+//       "Direct messaging support",
+//     ],
+//   },
 ];
 
 export default function ProgramsPage() {
