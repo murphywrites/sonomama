@@ -7,13 +7,14 @@ export default function MeetYourCoach() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
-          <div className="relative max-w-sm mx-auto lg:max-w-md order-1 lg:order-1">
+          <div className="relative w-full max-w-sm mx-auto lg:max-w-md aspect-[4/5] order-1 lg:order-1">
             <div className="absolute inset-0 bg-terracotta/20 rounded-2xl transform -rotate-3" />
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-blush shadow-lg">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden bg-blush shadow-lg">
               <Image
-                src="/assets/erin-placeholder.svg"
-                alt="Erin Murphy, PT, DPT - Perinatal Physical Therapist"
+                src="/assets/photos/boxer.jpeg"
+                alt="Erin Murphy - Perinatal Physical Therapist"
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
             </div>

@@ -43,9 +43,9 @@ export default function Navigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-cormorant text-2xl md:text-3xl font-semibold text-olive tracking-wide hover:text-terracotta transition-colors"
+            className="font-cormorant text-xl md:text-2xl font-semibold text-olive tracking-wide hover:text-terracotta transition-colors"
           >
-            ERIN MURPHY, DPT
+            THE MURPHY METHOD - ERIN MURPHY, PT, DPT
           </Link>
 
           {/* Desktop Navigation */}

@@ -49,24 +49,28 @@ export default function Hero({
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center pt-20">
         {/* Liquid Glass Container */}
-        <div className="relative p-8 md:p-12 rounded-3xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden">
+        <div className="relative p-6 md:p-8 rounded-3xl backdrop-blur-xl bg-white/20 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)] overflow-hidden">
           {/* Glass shimmer effect */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/10 pointer-events-none" />
           <div className="absolute -inset-1 bg-gradient-to-r from-terracotta/20 via-sage/20 to-terracotta/20 blur-2xl opacity-30 pointer-events-none" />
 
           {/* Content inside glass */}
           <div className="relative z-10">
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-4">
+              <div className="relative w-[min(70vw,220px)] h-[min(70vw,220px)] md:w-[260px] md:h-[260px] flex items-center justify-center">
                 <Image
-                    src="/assets/logos/murphymethodlogo.png"
-                    alt="The Murphy Method"
-                    width={500}
-                    height={500}
-                    className="w-[min(50vw,240px)] h-[min(50vw,240px)] md:w-[150px] md:h-[150px] object-contain"
-                    priority
+                  src="/assets/logos/murphymethodlogo.png"
+                  alt="The Murphy Method"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-contain"
+                  priority
                 />
+              </div>
             </div>
-
+            <h2 className="font-cormorant text-md md: text-lg font-semibold text-olive mb-4 tracking-wide">
+              {"by"}
+            </h2>
             {/* Main Title */}
             <h1 className="font-cormorant text-hero-mobile md:text-hero font-semibold text-olive mb-4 tracking-wide">
               {title}

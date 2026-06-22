@@ -6,30 +6,38 @@ import type { ValueProp } from "@/lib/types";
 
 const valueProps: ValueProp[] = [
   {
-    title: "Evidence-Based Care",
+    title: "Evidence-Based Programs",
     description:
-      "Physical therapy expertise meets maternal wellness. Every program is grounded in biomechanics and your unique journey.",
+      "Movements and progressions that are chosen carefully to take into account anatomy, biomechanics, and the specific changes that occur throughout the perinatal time frame.",
   },
   {
     title: "Perinatal Specialization",
     description:
-      "From pregnancy through postpartum and beyond—supporting your body through every phase of motherhood.",
+      "From pregnancy through postpartum and beyond — supporting your body through every phase of motherhood. It’s never too late.",
   },
   {
     title: "As You Are",
     description:
-      "Embrace your natural state. No pressure to bounce back. Just forward, at your pace.",
-  },
+      "Embrace whatever phase you are in - whether that is at 8 months pregnant, between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble. We'll find your pace and coach you from there.",
+  }
+//   {
+//     title: "As You Are",
+//     description:
+//       "Embrace whatever phase you are in - whether that is at 8 months pregnant, between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble. No pressure to bounce back. Just forward toward your goals at your pace.",
+//   },
+
 ];
+
+
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
       <Hero
-        title="Erin Murphy, DPT"
-        subtitle="Strength & Movement Coaching for Moms"
-        description="Perinatal Physical Therapy rooted in evidence, guided by compassion, honoring you as you are."
+        title="Erin Murphy, PT, DPT"
+        subtitle="💪 Mamas only ;)"
+        description="Strength and empowerment for expecting mothers, postpartum recovery, and busy moms at any phase. Erin meets each mom wherever she is in her journey of motherhood and honors that place, supporting her with evidence-based and approachable exercise as well as support through the ups and downs."
         primaryCta={{ text: "Explore Resources", href: "/resources" }}
         secondaryCta={{ text: "About Me", href: "/about" }}
         backgroundImage="/assets/hero-placeholder.svg"
@@ -77,10 +85,6 @@ export default function Home() {
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
             Ready to Begin Your Journey?
           </h2>
-          <p className="font-inter text-lg text-olive/80 mb-8">
-            Discover resources designed to support you through every phase of
-            motherhood, from pregnancy to postpartum and beyond.
-          </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/programs"

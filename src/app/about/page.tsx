@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Erin Murphy, DPT",
+  title: "About | Erin Murphy, PT, DPT",
   description:
     "Meet Erin Murphy — physical therapist, mother, and founder of The Murphy Method — supporting moms through pregnancy, postpartum, and beyond.",
 };
@@ -10,38 +10,36 @@ export const metadata: Metadata = {
 const credentials = [
   "Doctor of Physical Therapy",
   "Perinatal & Postpartum Corrective Exercise Specialist",
-  "Certified Strength & Conditioning Coach",
   "Based in Sonoma County, CA",
 ];
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-cream pt-32 pb-16 md:pt-40 md:pb-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Image */}
-            <div className="relative aspect-square max-w-md mx-auto lg:max-w-none">
-              <div className="absolute inset-0 bg-sage/20 rounded-2xl transform rotate-3" />
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-blush">
-                <Image
-                  src="/assets/erin-placeholder.svg"
-                  alt="Erin Murphy - Doctor of Physical Therapy"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+      {/* Bio Section — sticky full-height photo on desktop */}
+      <section className="bg-cream">
+        <div className="lg:grid lg:grid-cols-2">
+          {/* Image */}
+          <div className="relative lg:sticky lg:top-20 lg:self-start lg:h-[calc(100vh-5rem)] pl-6 md:pl-10 lg:pl-12 lg:pr-4 lg:py-6">
+            <div className="relative h-[55vh] min-h-[320px] w-full lg:h-full rounded-2xl overflow-hidden">
+              <Image
+                src="/assets/photos/lookandsquat.jpeg"
+                alt="Erin Murphy - Doctor of Physical Therapy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
             </div>
+          </div>
 
-            {/* Content */}
-            <div>
-              <h1 className="font-cormorant text-hero-mobile md:text-5xl font-semibold text-olive mb-6">
-                Hi, I&apos;m Erin
-              </h1>
+          {/* Content */}
+          <div className="px-6 md:px-12 lg:px-16 xl:px-24 py-12 md:py-16 lg:py-20">
+            <h1 className="font-cormorant text-hero-mobile md:text-5xl font-semibold text-olive mb-6">
+              Hi, I&apos;m Erin
+            </h1>
 
-              <div className="space-y-6 font-inter text-olive/85 leading-relaxed">
+            <div className="space-y-6 font-inter text-olive/85 leading-relaxed">
                 <p>
                   I&apos;m a physical therapist, a mother, and someone who
                   believes deeply that your body is capable of incredible
@@ -95,7 +93,6 @@ export default function AboutPage() {
                 </p>
 
                 <p className="font-cormorant text-xl text-terracotta">– Erin</p>
-              </div>
             </div>
           </div>
         </div>
