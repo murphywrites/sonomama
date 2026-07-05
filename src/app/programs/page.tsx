@@ -36,6 +36,8 @@ export const metadata: Metadata = {
 // -Start with Strength, 3x/week full body strength workouts with a new block every 8 weeks
 
 
+
+
 const programs: Program[] = [
   {
     id: "pregnancy-synced",

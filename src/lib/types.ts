@@ -17,7 +17,7 @@ export interface NavLink {
 export interface ValueProp {
   title: string;
   description: string;
-  japaneseText?: string;
+  decorativeText?: string;
 }
 
 export interface ProgramFeatureGroup {

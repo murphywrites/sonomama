@@ -39,7 +39,7 @@ export default function Home() {
         subtitle="💪 Mamas only ;)"
         description="Strength and empowerment for expecting mothers, postpartum recovery, and busy moms at any phase. Erin meets each mom wherever she is in her journey of motherhood and honors that place, supporting her with evidence-based and approachable exercise as well as support through the ups and downs."
         primaryCta={{ text: "Explore Resources", href: "/resources" }}
-        secondaryCta={{ text: "About Me", href: "/about" }}
+        secondaryCta={{ text: "About Your Coach", href: "/about" }}
         backgroundImage="/assets/hero-placeholder.svg"
         fullHeight
       />
@@ -61,9 +61,9 @@ export default function Home() {
                   </h3>
                   <div className="w-10 h-0.5 bg-terracotta/60 mx-auto md:mx-0" />
                 </div>
-                {prop.japaneseText && (
+                {prop.decorativeText && (
                   <p className="font-noto text-terracotta text-sm mb-2">
-                    {prop.japaneseText}
+                    {prop.decorativeText}
                   </p>
                 )}
                 <p className="font-inter text-olive/80 leading-relaxed flex-1">

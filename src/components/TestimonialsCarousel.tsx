@@ -76,7 +76,7 @@ export default function TestimonialsCarousel() {
     <section className="bg-blush/30 section-padding">
       <div className="max-w-4xl mx-auto px-6 md:px-12">
         <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-12 text-center">
-          What Moms Are Saying
+          {"What Moms Are Saying"}
         </h2>
 
         <div
