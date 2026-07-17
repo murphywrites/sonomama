@@ -48,7 +48,7 @@ const freeResources: Resource[] = [
     buttonText: "Download Free",
     link: "",
     isFree: true,
-    thumbnail: "/assets/resource-thumbnails/resource-5.svg",
+    thumbnail: "/assets/resource-thumbnails/resource-5.png",
   },
 //   {
 //     id: "diastasis-recti",
@@ -76,7 +76,7 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Header Section */}
-      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-12 md:pt-40 md:pb-12">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <h1 className="font-cormorant text-hero-mobile md:text-5xl font-semibold text-olive mb-4">
             Free Resources
@@ -91,9 +91,9 @@ export default function ResourcesPage() {
 
       <section className="relative overflow-hidden bg-white pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center items-stretch gap-8">
             {freeResources.map((resource) => (
-              <div key={resource.id} className="w-full max-w-sm">
+              <div key={resource.id} className="w-full max-w-sm flex">
                 <ResourceCard
                   resource={resource}
                   onFreeResourceClick={handleFreeResourceClick}

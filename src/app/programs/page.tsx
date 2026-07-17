@@ -46,7 +46,8 @@ const programs: Program[] = [
     id: "pregnancy-synced",
     title: "Pregnancy",
     description:
-      "Pregnancy Workout Plans synced to where you are in your pregnancy",
+    "",
+    //   "Pregnancy Workout Plans synced to where you are in your pregnancy",
     buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-1.svg",
@@ -125,7 +126,7 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-12 md:pt-40 md:pb-12">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <p className="font-inter text-terracotta font-medium text-sm tracking-wide uppercase mb-3">
             Programs

@@ -20,7 +20,7 @@ export default function ResourceCard({
   };
 
   return (
-    <article className="bg-cream rounded-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 overflow-hidden flex flex-col">
+    <article className="bg-cream rounded-card shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 overflow-hidden flex flex-col h-full w-full">
       {/* Thumbnail */}
       {resource.thumbnail && (
         <div className="relative aspect-[4/3] bg-blush">
