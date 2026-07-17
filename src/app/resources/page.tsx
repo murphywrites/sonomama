@@ -31,35 +31,35 @@ const programTeasers = [
 
 const freeResources: Resource[] = [
   {
-    id: "pelvic-floor-101",
-    title: "Pelvic Floor 101: What Every Mom Should Know",
+    id: "breathing-foundations",
+    title: "Breathing Foundations: Where Every Mom Can Start",
     description:
-      "A practical guide to understanding and caring for your pelvic floor through pregnancy and postpartum.",
+      "A free guide on why breathing matters — covering the diaphragm, pregnancy and postpartum changes, nervous system effects, and how to breathe during and after exercise.",
     buttonText: "Download Free",
     link: "",
     isFree: true,
-    thumbnail: "/assets/resource-thumbnails/resource-4.svg",
+    thumbnail: "/assets/resource-thumbnails/resource-4.jpg",
   },
   {
-    id: "daily-movement",
-    title: "5-Minute Daily Movement Practice",
+    id: "early-postpartum-movement",
+    title: "Early Postpartum Movement: A Place to Start",
     description:
-      "Gentle movements to reconnect with your body, even on the hardest days.",
+      "Peace of mind for easing back into activity—what to prioritize in the first few weeks, simple movements as tolerated, and how to begin a walking program.",
     buttonText: "Download Free",
     link: "",
     isFree: true,
     thumbnail: "/assets/resource-thumbnails/resource-5.svg",
   },
-  {
-    id: "diastasis-recti",
-    title: "Diastasis Recti: Myths vs. Evidence",
-    description:
-      "Separating fact from fear when it comes to abdominal separation.",
-    buttonText: "Download Free",
-    link: "",
-    isFree: true,
-    thumbnail: "/assets/resource-thumbnails/resource-6.svg",
-  },
+//   {
+//     id: "diastasis-recti",
+//     title: "Diastasis Recti: Myths vs. Evidence",
+//     description:
+//       "Separating fact from fear when it comes to abdominal separation.",
+//     buttonText: "Download Free",
+//     link: "",
+//     isFree: true,
+//     thumbnail: "/assets/resource-thumbnails/resource-6.svg",
+//   },
 ];
 
 export default function ResourcesPage() {
@@ -91,13 +91,14 @@ export default function ResourcesPage() {
 
       <section className="relative overflow-hidden bg-white pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-wrap justify-center gap-8">
             {freeResources.map((resource) => (
-              <ResourceCard
-                key={resource.id}
-                resource={resource}
-                onFreeResourceClick={handleFreeResourceClick}
-              />
+              <div key={resource.id} className="w-full max-w-sm">
+                <ResourceCard
+                  resource={resource}
+                  onFreeResourceClick={handleFreeResourceClick}
+                />
+              </div>
             ))}
           </div>
         </div>

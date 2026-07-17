@@ -44,6 +44,18 @@ export default function Footer() {
             >
               Resources
             </Link>
+            <Link
+              href="/policies"
+              className="font-inter text-sm text-cream/80 hover:text-cream transition-colors"
+            >
+              Policies
+            </Link>
+            <Link
+              href="/disclaimer"
+              className="font-inter text-sm text-cream/80 hover:text-cream transition-colors"
+            >
+              Disclaimer
+            </Link>
           </nav>
 
           {/* Social Links Placeholder */}

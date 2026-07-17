@@ -154,16 +154,18 @@ export default function ProgramCard({ program }: ProgramCardProps) {
         </div>
 
         <div className="border-t border-blush/40 pt-6 mt-auto">
-          <div className="flex items-baseline gap-1 mb-4">
-            <span className="font-cormorant text-3xl font-semibold text-olive">
-              {program.price}
-            </span>
-            {program.priceNote && (
-              <span className="font-inter text-sm text-olive/50">
-                {program.priceNote}
+          {program.price && (
+            <div className="flex items-baseline gap-1 mb-4">
+              <span className="font-cormorant text-3xl font-semibold text-olive">
+                {program.price}
               </span>
-            )}
-          </div>
+              {program.priceNote && (
+                <span className="font-inter text-sm text-olive/50">
+                  {program.priceNote}
+                </span>
+              )}
+            </div>
+          )}
           <Button
             variant="primary"
             href={program.stripeLink}

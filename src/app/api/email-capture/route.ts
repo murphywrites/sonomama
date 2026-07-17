@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { readFile } from "fs/promises";
+import path from "path";
 import { Resend } from "resend";
+import { buildDeliveryEmailHtml } from "@/lib/emails/deliveryEmail";
+import { RESOURCE_MAP } from "@/lib/resourceMap";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 async function addToKit(name: string, email: string, resourceId: string) {
   const apiKey = process.env.KIT_API_KEY;
   if (!apiKey) {
-    throw new Error("KIT_API_KEY is not configured");
+    console.error("KIT_API_KEY is not configured");
+    return;
   }
 
   const tag = `resource:${resourceId}`;
@@ -19,8 +24,6 @@ async function addToKit(name: string, email: string, resourceId: string) {
     },
     body: JSON.stringify({ email_address: email, first_name: name }),
   });
-
-  console.log("subscriberRes", subscriberRes);
 
   if (!subscriberRes.ok) {
     throw new Error(`Kit subscriber create failed: ${subscriberRes.status}`);
@@ -89,22 +92,86 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await addToKit(trimmedName, email, resourceId);
+    const resource = RESOURCE_MAP[resourceId];
+    if (!resource) {
+      return NextResponse.json(
+        { error: "Unknown resource" },
+        { status: 400 }
+      );
+    }
+
+    const siteUrl =
+      process.env.NEXT_PUBLIC_SITE_URL || request.nextUrl.origin;
+    const baseUrl = siteUrl.replace(/\/$/, "");
+    const programsUrl = `${baseUrl}/programs`;
+    const hasFile = Boolean(resource.filePath && resource.fileUrl);
+    const downloadUrl = hasFile
+      ? resource.fileUrl.startsWith("http")
+        ? resource.fileUrl
+        : `${baseUrl}${resource.fileUrl}`
+      : undefined;
+
+    let attachment:
+      | { filename: string; content: Buffer; contentType: string }
+      | undefined;
+
+    if (resource.filePath) {
+      try {
+        const pdfBuffer = await readFile(
+          path.join(process.cwd(), resource.filePath)
+        );
+        attachment = {
+          filename: resource.attachmentFilename,
+          content: pdfBuffer,
+          contentType: "application/pdf",
+        };
+      } catch (err) {
+        console.error("Failed to read resource PDF:", resource.filePath, err);
+        return NextResponse.json(
+          { error: "Resource file is unavailable. Please try again later." },
+          { status: 500 }
+        );
+      }
+    }
 
     const resend = new Resend(apiKey);
-    const result = await resend.emails.send({
-      from: `Erin Murphy, DPT <${fromEmail}>`,
-      to: email,
-      subject: "Thanks for downloading — test email",
-      html: `
-        <p>Hi ${trimmedName},</p>
-        <p>This is a test email confirming your free resource request for <strong>${resourceId}</strong>.</p>
-        <p>— Erin Murphy, DPT</p>
-      `,
-    });
+    const [kitResult, emailResult] = await Promise.allSettled([
+      addToKit(trimmedName, email, resourceId),
+      resend.emails.send({
+        from: `Erin Murphy, DPT <${fromEmail}>`,
+        to: email,
+        subject: `Your free guide: ${resource.title}`,
+        html: buildDeliveryEmailHtml({
+          name: trimmedName,
+          resource: {
+            title: resource.title,
+            fileUrl: downloadUrl,
+          },
+          programsUrl,
+          intros: resource.email.intros,
+          bullets: resource.email.bullets,
+          videoUrl: resource.email.videoUrl,
+          attachedNote: attachment ? resource.email.attachedNote : undefined,
+          showDownloadButton: Boolean(downloadUrl),
+        }),
+        ...(attachment ? { attachments: [attachment] } : {}),
+      }),
+    ]);
 
-    if (result.error) {
-      console.error("Resend failed:", result.error);
+    if (kitResult.status === "rejected") {
+      console.error("Kit sync failed:", kitResult.reason);
+    }
+
+    if (emailResult.status === "rejected") {
+      console.error("Resend failed:", emailResult.reason);
+      return NextResponse.json(
+        { error: "Failed to send email. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    if (emailResult.value.error) {
+      console.error("Resend failed:", emailResult.value.error);
       return NextResponse.json(
         { error: "Failed to send email. Please try again." },
         { status: 500 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import ProgramCard from "@/components/ProgramCard";
 import SectionFade from "@/components/SectionFade";
@@ -46,7 +47,6 @@ const programs: Program[] = [
     title: "Pregnancy",
     description:
       "Pregnancy Workout Plans synced to where you are in your pregnancy",
-      price: "$147",
     buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-1.svg",
@@ -77,7 +77,6 @@ const programs: Program[] = [
     id: "postpartum",
     title: "Postpartum",
     description: "",
-    price: "$297",
     buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-2.svg",
@@ -108,7 +107,6 @@ const programs: Program[] = [
     id: "moms-any-phase",
     title: "Moms in any phase of life",
     description: "",
-    price: "$147",
     buttonText: "Get Started",
     stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-3.svg",
@@ -127,7 +125,7 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative overflow-hidden bg-cream pt-32 pb-12 md:pt-32 md:pb-12">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <p className="font-inter text-terracotta font-medium text-sm tracking-wide uppercase mb-3">
             Programs
@@ -139,6 +137,7 @@ export default function ProgramsPage() {
             Evidence-based programs built by a Doctor of Physical Therapy—
             designed to meet you exactly where you are.
           </p>
+          
         </div>
         <SectionFade to="white" />
       </section>
@@ -152,8 +151,39 @@ export default function ProgramsPage() {
             ))}
           </div>
         </div>
+        {/* Train Heroic access note */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-12 md:pt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="text-center md:text-left">
+              <h2 className="font-cormorant text-section-mobile md:text-2xl font-semibold text-olive mb-4">
+                App Access
+              </h2>
+              <p className="font-inter text-olive/80 mb-4 leading-relaxed">
+                All programs are accessed via the easy-to-use Train Heroic app.
+              </p>
+              <ul className="font-inter text-olive/80 space-y-2 list-disc list-inside md:list-outside md:pl-5 text-left">
+                <li>Detailed video demos with tips and cues</li>
+                <li>Recommended reps, sets, and load</li>
+                <li>Direct access to ask Erin questions and get feedback on form</li>
+                <li>Help with modifications and progressions</li>
+                <li>Easily track your progress session to session</li>
+              </ul>
+            </div>
+            <div className="relative w-full aspect-[4/3] max-w-md mx-auto md:max-w-none">
+              <Image
+                src="/assets/photos/trainheroic.png"
+                alt="Train Heroic app"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+            </div>
+          </div>
+        </div>
+
         <SectionFade to="sage-light" />
       </section>
+      
 
       <ContactForm
         title="Not Sure Which Program Is Right for You?"

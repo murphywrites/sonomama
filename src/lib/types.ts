@@ -31,7 +31,7 @@ export interface Program {
   id: string;
   title: string;
   description: string;
-  price: string;
+  price?: string;
   priceNote?: string;
   buttonText: string;
   stripeLink: string;

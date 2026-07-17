@@ -4,7 +4,7 @@ import Link from "next/link";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "cream";
   href?: string;
   onClick?: () => void;
   type?: "button" | "submit";
@@ -29,6 +29,8 @@ export default function Button({
       "bg-terracotta text-white hover:bg-terracotta-dark active:bg-terracotta-dark",
     secondary:
       "border-2 border-terracotta text-terracotta bg-transparent hover:bg-terracotta hover:text-white active:bg-terracotta-dark",
+    cream:
+      "bg-cream border-2 border-terracotta text-terracotta hover:bg-blush active:bg-blush",
   };
 
   const combinedStyles = `${baseStyles} ${variants[variant]} ${className}`;
