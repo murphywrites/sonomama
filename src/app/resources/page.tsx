@@ -123,9 +123,9 @@ export default function ResourcesPage() {
                 <p className="font-inter text-sm text-olive/60 mb-2">
                   {p.subtitle}
                 </p>
-                <p className="font-inter text-lg font-medium text-terracotta">
+                {/* <p className="font-inter text-lg font-medium text-terracotta">
                   {p.price}
-                </p>
+                </p> */}
               </div>
             ))}
           </div>
