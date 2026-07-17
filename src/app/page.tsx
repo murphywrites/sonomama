@@ -41,7 +41,7 @@ export default function Home() {
       
 
       {/* Value Props Section */}
-      <section className="relative overflow-hidden bg-white section-padding pt-0 md:pt-4 pb-24 md:pb-32">
+      <section className="relative overflow-hidden bg-white section-padding pt-0 md:pt-4 pb-16 md:pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-stretch">
             {valueProps.map((prop, index) => (

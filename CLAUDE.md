@@ -95,7 +95,7 @@ Fonts are loaded via Google Fonts in `src/app/layout.tsx`.
 
 ### Hero (`src/components/Hero.tsx`)
 - Full-viewport hero section
-- Props: `title`, `japaneseText`, `subtitle`, `description`, `primaryCta`, `secondaryCta`, `backgroundImage`, `fullHeight`
+- Props: `title`, `decorativeText`, `subtitle`, `description`, `primaryCta`, `secondaryCta`, `backgroundImage`, `fullHeight`
 
 ### EmailCaptureModal (`src/components/EmailCaptureModal.tsx`)
 - Opens when clicking free resource cards

@@ -11,21 +11,27 @@ export const metadata: Metadata = {
 const credentials = [
   "Doctor of Physical Therapy, Northwestern University",
   "Perinatal & Postpartum Corrective Exercise Specialist",
-  "Toddler #BoyMom",
+  "Certified #BoyMom",
 ];
 
 const methodContrasts = [
   {
+    leftLabel: "What we don't offer",
+    rightLabel: "Instead",
     not: "Quick fixes and promises to help you \u201Cbounce back\u201D (whatever that means\u2026)",
     instead:
       "Building a foundation of mobility, strength, and confidence over time so you can live an active, healthy, pain-free life for years to come",
   },
   {
+    leftLabel: "Nope",
+    rightLabel: "Yup",
     not: "Trendy workouts not based in science",
     instead:
       "Tried and true, evidence-based workouts, mobility routines, core connection, and birth prep",
   },
   {
+    leftLabel: "None of this",
+    rightLabel: "All of that",
     not: "Programs created by someone whose only credentials are that they had a baby themselves and enjoy working out",
     instead:
       "Programs created by someone who does have firsthand experience with carrying, delivering, and raising a baby, but ALSO someone who has more than 7 years of experience as a Doctor of Physical Therapy, 5 years creating strength plans for all demographics, 3 years creating workout plans and education for women specifically in the perinatal time frame, lots of self-directed study on the best ways to support moms during pregnancy and postpartum, and more formally completed coursework to become certified as a Pregnancy and Postpartum Corrective Exercise Specialist.",
@@ -36,7 +42,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Bio Section — sticky full-height photo on desktop */}
-      <section className="relative overflow-hidden bg-cream pb-24 md:pb-32">
+      <section className="relative bg-cream pb-24 md:pb-32">
         <div className="lg:grid lg:grid-cols-2">
           {/* Image */}
           <div className="relative lg:sticky lg:top-20 lg:self-start lg:h-[calc(100vh-5rem)] pl-6 md:pl-10 lg:pl-12 lg:pr-4 lg:py-6">
@@ -129,7 +135,7 @@ export default function AboutPage() {
             {credentials.map((credential, index) => (
               <div
                 key={index}
-                className="bg-cream p-6 rounded-card shadow-card hover:shadow-card-hover transition-shadow duration-200"
+                className="bg-cream p-6 rounded-card shadow-card hover:shadow-card-hover transition-shadow duration-200 flex items-center justify-center text-center"
               >
                 <p className="font-inter text-olive/90">{credential}</p>
               </div>
@@ -154,7 +160,7 @@ export default function AboutPage() {
               >
                 <div className="bg-white/40 rounded-card p-6 md:p-7 border border-olive/10">
                   <p className="font-inter text-xs font-medium uppercase tracking-wider text-olive/45 mb-3">
-                    What we don&apos;t offer
+                    {pair.leftLabel}
                   </p>
                   <p className="font-inter text-olive/70 leading-relaxed">
                     {pair.not}
@@ -163,7 +169,7 @@ export default function AboutPage() {
 
                 <div className="bg-white rounded-card p-6 md:p-7 border border-terracotta/25 shadow-card">
                   <p className="font-inter text-xs font-medium uppercase tracking-wider text-terracotta mb-3">
-                    Instead
+                    {pair.rightLabel}
                   </p>
                   <p className="font-inter text-olive/85 leading-relaxed">
                     {pair.instead}

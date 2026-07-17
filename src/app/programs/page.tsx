@@ -127,7 +127,7 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-12 md:pt-32 md:pb-12">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <p className="font-inter text-terracotta font-medium text-sm tracking-wide uppercase mb-3">
             Programs
@@ -144,7 +144,7 @@ export default function ProgramsPage() {
       </section>
 
       {/* Programs Grid */}
-      <section className="relative overflow-hidden bg-white section-padding pb-24 md:pb-32">
+      <section className="relative overflow-hidden bg-white pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           <div className="flex flex-col divide-y divide-blush/40 border-y border-blush/40 lg:border-y-0 lg:divide-y-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:items-stretch">
             {programs.map((program) => (

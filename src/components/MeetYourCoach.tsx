@@ -4,7 +4,7 @@ import SectionFade from "./SectionFade";
 
 export default function MeetYourCoach() {
   return (
-    <section className="relative overflow-hidden bg-cream section-padding pb-24 md:pb-32">
+    <section className="relative overflow-hidden bg-cream section-padding pt-10 md:pt-14 pb-24 md:pb-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
