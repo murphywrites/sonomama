@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import ContactForm from "@/components/ContactForm";
 import ProgramCard from "@/components/ProgramCard";
+import SectionFade from "@/components/SectionFade";
 import type { Program } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -118,32 +120,14 @@ const programs: Program[] = [
         ],
       },
     ],
-  },
-//   {
-//     id: "virtual-pt",
-//     title: "1:1 Virtual PT",
-//     description:
-//       "Personalized assessment and treatment plan tailored specifically to your body, history, and goals.",
-//     price: "$175",
-//     priceNote: "/ session",
-//     buttonText: "Book a Session",
-//     stripeLink: "#stripe-link-placeholder",
-//     thumbnail: "/assets/resource-thumbnails/resource-3.svg",
-//     features: [
-//       "60-minute one-on-one video session",
-//       "Comprehensive movement assessment",
-//       "Custom exercise prescription",
-//       "Session notes & follow-up plan",
-//       "Direct messaging support",
-//     ],
-//   },
+  }
 ];
 
 export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-cream pt-32 pb-12 md:pt-40 md:pb-16">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <p className="font-inter text-terracotta font-medium text-sm tracking-wide uppercase mb-3">
             Programs
@@ -156,37 +140,25 @@ export default function ProgramsPage() {
             designed to meet you exactly where you are.
           </p>
         </div>
+        <SectionFade to="white" />
       </section>
 
       {/* Programs Grid */}
-      <section className="bg-white section-padding">
+      <section className="relative overflow-hidden bg-white section-padding pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col divide-y divide-blush/40 border-y border-blush/40 lg:border-y-0 lg:divide-y-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:items-stretch">
             {programs.map((program) => (
               <ProgramCard key={program.id} program={program} />
             ))}
           </div>
         </div>
+        <SectionFade to="sage-light" />
       </section>
 
-      {/* Is this right for me? */}
-      <section className="bg-sage/15 section-padding">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-4">
-            Not Sure Which Program Is Right for You?
-          </h2>
-          <p className="font-inter text-lg text-olive/80 mb-6">
-            Book a free 15-minute consultation and we&rsquo;ll find the best fit
-            for your body, your history, and your goals.
-          </p>
-          <a
-            href="#consultation-link-placeholder"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-inter font-medium text-base transition-all duration-200 bg-terracotta text-white hover:bg-terracotta-dark"
-          >
-            Schedule a Free Call
-          </a>
-        </div>
-      </section>
+      <ContactForm
+        title="Not Sure Which Program Is Right for You?"
+        description="Tell us a bit about where you are and what you're looking for. Erin will reply by email to help you find the best fit."
+      />
     </>
   );
 }

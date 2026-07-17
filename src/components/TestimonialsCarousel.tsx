@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { Testimonial } from "@/lib/types";
+import SectionFade from "./SectionFade";
 
 const testimonials: Testimonial[] = [
   {
@@ -73,7 +74,7 @@ export default function TestimonialsCarousel() {
   const t = testimonials[currentIndex];
 
   return (
-    <section className="bg-blush/30 section-padding">
+    <section className="relative overflow-hidden bg-blush/30 section-padding pb-24 md:pb-32">
       <div className="max-w-4xl mx-auto px-6 md:px-12">
         <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-12 text-center">
           {"What Moms Are Saying"}
@@ -166,6 +167,7 @@ export default function TestimonialsCarousel() {
           </button>
         </div>
       </div>
+      <SectionFade to="sage-light" />
     </section>
   );
 }

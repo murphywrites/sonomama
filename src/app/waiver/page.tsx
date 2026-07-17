@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import WaiverForm from "@/components/WaiverForm";
+import SectionFade from "@/components/SectionFade";
 
 export const metadata: Metadata = {
   title: "Program Waiver | Erin Murphy, DPT",
@@ -11,7 +12,7 @@ export default function WaiverPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-cream pt-32 pb-12 md:pt-40 md:pb-16">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="max-w-3xl mx-auto px-6 md:px-12 text-center">
           <h1 className="font-cormorant text-hero-mobile md:text-5xl font-semibold text-olive mb-4">
             Program Participation Agreement
@@ -21,13 +22,15 @@ export default function WaiverPage() {
             your program.
           </p>
         </div>
+        <SectionFade to="white" />
       </section>
 
       {/* Waiver Form */}
-      <section className="bg-white section-padding">
+      <section className="relative overflow-hidden bg-white section-padding pb-24 md:pb-32">
         <div className="max-w-3xl mx-auto px-6 md:px-12">
           <WaiverForm />
         </div>
+        <SectionFade to="olive" />
       </section>
     </>
   );

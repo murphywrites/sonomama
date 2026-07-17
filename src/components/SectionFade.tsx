@@ -6,6 +6,7 @@ type SectionFadeTarget =
   | "sage"
   | "olive";
 
+/** Exact next-section background colors used by SectionFade */
 const fadeColors: Record<SectionFadeTarget, string> = {
   white: "#ffffff",
   cream: "#FFF8F5",
@@ -24,7 +25,7 @@ export default function SectionFade({ to }: SectionFadeProps) {
     <div
       className="absolute bottom-0 left-0 right-0 h-24 md:h-32 pointer-events-none z-[5]"
       style={{
-        background: `linear-gradient(to bottom, transparent 60%, ${fadeColors[to]} 100%)`,
+        background: `linear-gradient(to bottom, transparent 40%, ${fadeColors[to]} 100%)`,
       }}
       aria-hidden="true"
     />

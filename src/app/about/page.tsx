@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import SectionFade from "@/components/SectionFade";
 
 export const metadata: Metadata = {
   title: "About | Erin Murphy, PT, DPT",
@@ -8,16 +9,34 @@ export const metadata: Metadata = {
 };
 
 const credentials = [
-  "Doctor of Physical Therapy",
+  "Doctor of Physical Therapy, Northwestern University",
   "Perinatal & Postpartum Corrective Exercise Specialist",
-  "Based in Sonoma County, CA",
+  "Toddler #BoyMom",
+];
+
+const methodContrasts = [
+  {
+    not: "Quick fixes and promises to help you \u201Cbounce back\u201D (whatever that means\u2026)",
+    instead:
+      "Building a foundation of mobility, strength, and confidence over time so you can live an active, healthy, pain-free life for years to come",
+  },
+  {
+    not: "Trendy workouts not based in science",
+    instead:
+      "Tried and true, evidence-based workouts, mobility routines, core connection, and birth prep",
+  },
+  {
+    not: "Programs created by someone whose only credentials are that they had a baby themselves and enjoy working out",
+    instead:
+      "Programs created by someone who does have firsthand experience with carrying, delivering, and raising a baby, but ALSO someone who has more than 7 years of experience as a Doctor of Physical Therapy, 5 years creating strength plans for all demographics, 3 years creating workout plans and education for women specifically in the perinatal time frame, lots of self-directed study on the best ways to support moms during pregnancy and postpartum, and more formally completed coursework to become certified as a Pregnancy and Postpartum Corrective Exercise Specialist.",
+  },
 ];
 
 export default function AboutPage() {
   return (
     <>
       {/* Bio Section — sticky full-height photo on desktop */}
-      <section className="bg-cream">
+      <section className="relative overflow-hidden bg-cream pb-24 md:pb-32">
         <div className="lg:grid lg:grid-cols-2">
           {/* Image */}
           <div className="relative lg:sticky lg:top-20 lg:self-start lg:h-[calc(100vh-5rem)] pl-6 md:pl-10 lg:pl-12 lg:pr-4 lg:py-6">
@@ -96,16 +115,17 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        <SectionFade to="white" />
       </section>
 
       {/* Credentials Section */}
-      <section className="bg-white section-padding">
+      <section className="relative overflow-hidden bg-white section-padding pb-24 md:pb-32">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-10">
             Credentials & Training
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {credentials.map((credential, index) => (
               <div
                 key={index}
@@ -116,22 +136,44 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        <SectionFade to="sage-light" />
       </section>
 
       {/* Philosophy Section */}
-      <section className="bg-sage/15 section-padding">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
+      <section className="relative overflow-hidden bg-sage/15 section-padding pb-24 md:pb-32">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-10 text-center">
             The Murphy Method
           </h2>
-          <p className="font-inter text-lg text-olive/80 leading-relaxed">
-            Evidence-based, realistic, and built for real mom life. The Murphy
-            Method exists because you deserve guidance that actually honors
-            where you are&mdash;not outdated advice, not generic plans, and not
-            a 6-week clearance that treats birth recovery as a checkbox. Just
-            expert support that meets you exactly as you are.
-          </p>
+
+          <div className="space-y-6">
+            {methodContrasts.map((pair, index) => (
+              <div
+                key={index}
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
+              >
+                <div className="bg-white/40 rounded-card p-6 md:p-7 border border-olive/10">
+                  <p className="font-inter text-xs font-medium uppercase tracking-wider text-olive/45 mb-3">
+                    What we don&apos;t offer
+                  </p>
+                  <p className="font-inter text-olive/70 leading-relaxed">
+                    {pair.not}
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-card p-6 md:p-7 border border-terracotta/25 shadow-card">
+                  <p className="font-inter text-xs font-medium uppercase tracking-wider text-terracotta mb-3">
+                    Instead
+                  </p>
+                  <p className="font-inter text-olive/85 leading-relaxed">
+                    {pair.instead}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+        <SectionFade to="olive" />
       </section>
     </>
   );

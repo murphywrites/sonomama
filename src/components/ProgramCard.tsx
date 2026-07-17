@@ -1,3 +1,6 @@
+"use client";
+
+import { useId, useState } from "react";
 import Button from "./Button";
 import type { Program, ProgramFeature } from "@/lib/types";
 
@@ -12,6 +15,7 @@ function CheckIcon() {
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
+      aria-hidden="true"
     >
       <path
         strokeLinecap="round"
@@ -42,7 +46,10 @@ function FeatureItem({ feature }: { feature: ProgramFeature }) {
       <ul className="mt-2 ml-6 space-y-2">
         {feature.children.map((child, i) => (
           <li key={i} className="flex items-start gap-2 pl-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-terracotta/70 mt-2 shrink-0" />
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-terracotta/70 mt-2 shrink-0"
+              aria-hidden="true"
+            />
             {child}
           </li>
         ))}
@@ -51,16 +58,43 @@ function FeatureItem({ feature }: { feature: ProgramFeature }) {
   );
 }
 
-export default function ProgramCard({ program }: ProgramCardProps) {
+function ChevronIcon({ expanded }: { expanded: boolean }) {
   return (
-    <div className="bg-white rounded-2xl shadow-card border border-blush/40 flex flex-col overflow-hidden">
+    <svg
+      className={`w-4 h-4 shrink-0 transition-transform duration-300 motion-reduce:transition-none ${
+        expanded ? "rotate-180" : ""
+      }`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  );
+}
+
+export default function ProgramCard({ program }: ProgramCardProps) {
+  const [expanded, setExpanded] = useState(false);
+  const panelId = useId();
+  const previewFeatures = program.features.slice(0, 1);
+  const extraFeatures = program.features.slice(1);
+  const hasMore = extraFeatures.length > 0;
+
+  return (
+    <article className="bg-white flex flex-col h-full overflow-hidden max-lg:py-8 lg:rounded-2xl lg:shadow-card lg:border lg:border-blush/40">
       {program.badge && (
         <div className="bg-terracotta text-white font-inter text-xs font-medium tracking-wide uppercase text-center py-2 px-4">
           {program.badge}
         </div>
       )}
 
-      <div className="p-8 flex flex-col flex-1">
+      <div className="flex flex-col flex-1 h-full lg:p-8">
         <h3 className="font-cormorant text-2xl font-semibold text-olive mb-2">
           {program.title}
         </h3>
@@ -71,15 +105,55 @@ export default function ProgramCard({ program }: ProgramCardProps) {
           </p>
         )}
 
-        {/* Features */}
-        <ul className="space-y-3 mb-8 flex-1">
-          {program.features.map((feature, i) => (
-            <FeatureItem key={i} feature={feature} />
-          ))}
-        </ul>
+        <div className="flex flex-col flex-1 min-h-0">
+          <ul className="space-y-3">
+            {previewFeatures.map((feature, i) => (
+              <FeatureItem key={i} feature={feature} />
+            ))}
+          </ul>
 
-        {/* Price + CTA */}
-        <div className="border-t border-blush/40 pt-6">
+          {hasMore && (
+            <>
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={`${panelId}-toggle`}
+                aria-hidden={!expanded}
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${
+                  expanded
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <ul
+                    className={`space-y-3 pt-3 transition-transform duration-300 ease-out motion-reduce:transition-none ${
+                      expanded ? "translate-y-0" : "-translate-y-2"
+                    }`}
+                  >
+                    {extraFeatures.map((feature, i) => (
+                      <FeatureItem key={i} feature={feature} />
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <button
+                id={`${panelId}-toggle`}
+                type="button"
+                aria-expanded={expanded}
+                aria-controls={panelId}
+                onClick={() => setExpanded((open) => !open)}
+                className="mt-4 inline-flex items-center gap-1.5 font-inter text-sm font-medium text-terracotta hover:text-terracotta-dark transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 rounded-sm self-start"
+              >
+                {expanded ? "See less" : "See more"}
+                <ChevronIcon expanded={expanded} />
+              </button>
+            </>
+          )}
+        </div>
+
+        <div className="border-t border-blush/40 pt-6 mt-auto">
           <div className="flex items-baseline gap-1 mb-4">
             <span className="font-cormorant text-3xl font-semibold text-olive">
               {program.price}
@@ -90,11 +164,15 @@ export default function ProgramCard({ program }: ProgramCardProps) {
               </span>
             )}
           </div>
-          <Button variant="primary" href={program.stripeLink} className="w-full justify-center">
+          <Button
+            variant="primary"
+            href={program.stripeLink}
+            className="w-full justify-center"
+          >
             {program.buttonText}
           </Button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

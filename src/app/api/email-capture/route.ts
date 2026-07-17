@@ -1,18 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { createServerClient } from "@/lib/supabase-server";
-import { RESOURCE_MAP } from "@/lib/resourceMap";
-import { buildDeliveryEmailHtml } from "@/lib/emails/deliveryEmail";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 async function addToKit(name: string, email: string, resourceId: string) {
   const apiKey = process.env.KIT_API_KEY;
-  if (!apiKey) return;
+  if (!apiKey) {
+    throw new Error("KIT_API_KEY is not configured");
+  }
 
   const tag = `resource:${resourceId}`;
 
-  // Create/update subscriber
   const subscriberRes = await fetch("https://api.kit.com/v4/subscribers", {
     method: "POST",
     headers: {
@@ -22,12 +20,18 @@ async function addToKit(name: string, email: string, resourceId: string) {
     body: JSON.stringify({ email_address: email, first_name: name }),
   });
 
-  if (!subscriberRes.ok) return;
+  console.log("subscriberRes", subscriberRes);
+
+  if (!subscriberRes.ok) {
+    throw new Error(`Kit subscriber create failed: ${subscriberRes.status}`);
+  }
+
   const subscriber = await subscriberRes.json();
   const subscriberId = subscriber?.subscriber?.id;
-  if (!subscriberId) return;
+  if (!subscriberId) {
+    throw new Error("Kit did not return a subscriber id");
+  }
 
-  // Apply resource tag
   await fetch("https://api.kit.com/v4/tags", {
     method: "POST",
     headers: {
@@ -37,7 +41,6 @@ async function addToKit(name: string, email: string, resourceId: string) {
     body: JSON.stringify({ name: tag, subscriber_id: subscriberId }),
   });
 
-  // Enroll in sequence if configured
   const sequenceId = process.env.KIT_SEQUENCE_ID;
   if (sequenceId) {
     await fetch(`https://api.kit.com/v4/sequences/${sequenceId}/subscribers`, {
@@ -74,38 +77,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const resource = RESOURCE_MAP[resourceId];
-    if (!resource) {
-      return NextResponse.json({ error: "Unknown resource" }, { status: 400 });
+    const trimmedName = name.trim();
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.FROM_EMAIL;
+
+    if (!apiKey || !fromEmail) {
+      console.error("email-capture missing RESEND_API_KEY or FROM_EMAIL");
+      return NextResponse.json(
+        { error: "Email delivery is not configured yet" },
+        { status: 503 }
+      );
     }
 
-    const supabase = createServerClient();
+    await addToKit(trimmedName, email, resourceId);
 
-    const [supabaseResult, , resendResult] = await Promise.allSettled([
-      // 1. Log lead to Supabase
-      supabase.from("email_leads").upsert(
-        { email, name: name.trim(), resource_id: resourceId, source: "modal" },
-        { onConflict: "email,resource_id" }
-      ),
+    const resend = new Resend(apiKey);
+    const result = await resend.emails.send({
+      from: `Erin Murphy, DPT <${fromEmail}>`,
+      to: email,
+      subject: "Thanks for downloading — test email",
+      html: `
+        <p>Hi ${trimmedName},</p>
+        <p>This is a test email confirming your free resource request for <strong>${resourceId}</strong>.</p>
+        <p>— Erin Murphy, DPT</p>
+      `,
+    });
 
-      // 2. Add to Kit (non-blocking — failure should not block delivery)
-      addToKit(name.trim(), email, resourceId),
-
-      // 3. Send delivery email via Resend
-      new Resend(process.env.RESEND_API_KEY).emails.send({
-        from: `Erin Murphy, DPT <${process.env.FROM_EMAIL ?? "hello@example.com"}>`,
-        to: email,
-        subject: `Your free guide: ${resource.title}`,
-        html: buildDeliveryEmailHtml({ name: name.trim(), resource }),
-      }),
-    ]);
-
-    if (supabaseResult.status === "rejected") {
-      console.error("Supabase upsert failed:", supabaseResult.reason);
-    }
-
-    if (resendResult.status === "rejected") {
-      console.error("Resend failed:", resendResult.reason);
+    if (result.error) {
+      console.error("Resend failed:", result.error);
       return NextResponse.json(
         { error: "Failed to send email. Please try again." },
         { status: 500 }

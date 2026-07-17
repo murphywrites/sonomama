@@ -2,28 +2,30 @@
 
 import { useState } from "react";
 import ResourceCard from "@/components/ResourceCard";
+import ContactForm from "@/components/ContactForm";
 import EmailCaptureModal from "@/components/EmailCaptureModal";
 import Button from "@/components/Button";
+import SectionFade from "@/components/SectionFade";
 import type { Resource } from "@/lib/types";
 
 const programTeasers = [
   {
-    id: "foundations",
-    title: "Foundations",
-    subtitle: "6-Week Postpartum Recovery",
+    id: "pregnancy-sync-workout-plans",
+    title: "Pregnancy Synced Workout Plans",
+    subtitle: "Synced to where you are in your pregnancy",
     price: "$147",
   },
   {
-    id: "strong-mama",
-    title: "Strong Mama",
-    subtitle: "12-Week Strength Training",
+    id: "postpartum-workout-plans",
+    title: "Postpartum Workout Plans",
+    subtitle: "Gentle mobility, reconnection, and progressive strength for early postpartum through weeks 6–14.",
     price: "$297",
   },
   {
-    id: "virtual-pt",
-    title: "1:1 Virtual PT",
-    subtitle: "Personalized Sessions",
-    price: "$175/session",
+    id: "moms-any-phase-of-life",
+    title: "Moms in any phase of life",
+    subtitle: "Start with Strength, 3x/week full body strength workouts with a new block every 8 weeks",
+    price: "$147",
   },
 ];
 
@@ -74,7 +76,7 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Header Section */}
-      <section className="bg-cream pt-32 pb-12 md:pt-40 md:pb-16">
+      <section className="relative overflow-hidden bg-cream pt-32 pb-24 md:pt-40 md:pb-32">
         <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
           <h1 className="font-cormorant text-hero-mobile md:text-5xl font-semibold text-olive mb-4">
             Free Resources
@@ -84,13 +86,29 @@ export default function ResourcesPage() {
             cost.
           </p>
         </div>
+        <SectionFade to="white" />
+      </section>
+
+      <section className="relative overflow-hidden bg-white pb-24 md:pb-32">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {freeResources.map((resource) => (
+              <ResourceCard
+                key={resource.id}
+                resource={resource}
+                onFreeResourceClick={handleFreeResourceClick}
+              />
+            ))}
+          </div>
+        </div>
+        <SectionFade to="sage-light" />
       </section>
 
       {/* Programs Teaser Strip */}
-      <section className="bg-sage/15 py-10 md:py-12">
+      <section className="relative overflow-hidden bg-sage/15 py-10 md:py-12 pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           <p className="font-inter text-sm text-olive/60 uppercase tracking-wide text-center mb-6">
-            Looking for structured programs?
+            {"Looking for structured programs?"}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             {programTeasers.map((p) => (
@@ -116,50 +134,14 @@ export default function ResourcesPage() {
             </Button>
           </div>
         </div>
+        <SectionFade to="sage-light" />
       </section>
 
-      {/* Divider */}
-      <div className="flex items-center max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8">
-        <div className="flex-1 border-t border-blush" />
-        <p className="font-inter text-sm text-olive/50 mx-6">
-          Or explore our free resources below
-        </p>
-        <div className="flex-1 border-t border-blush" />
-      </div>
 
-      {/* Free Resources Grid */}
-      <section className="bg-white pb-16 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {freeResources.map((resource) => (
-              <ResourceCard
-                key={resource.id}
-                resource={resource}
-                onFreeResourceClick={handleFreeResourceClick}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-sage/15 section-padding">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-4">
-            Not Sure Where to Start?
-          </h2>
-          <p className="font-inter text-lg text-olive/80 mb-6">
-            Book a free 15-minute consultation call to discuss your goals and
-            find the right path forward.
-          </p>
-          <a
-            href="#consultation-link-placeholder"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-inter font-medium text-base transition-all duration-200 bg-terracotta text-white hover:bg-terracotta-dark"
-          >
-            Schedule a Call
-          </a>
-        </div>
-      </section>
+      <ContactForm
+        title="Not Sure Where to Start?"
+        description="Send a message about your goals and Erin will help point you in the right direction."
+      />
 
       {/* Email Capture Modal */}
       <EmailCaptureModal

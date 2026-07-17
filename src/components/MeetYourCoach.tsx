@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Button from "./Button";
+import SectionFade from "./SectionFade";
 
 export default function MeetYourCoach() {
   return (
-    <section className="bg-cream section-padding">
+    <section className="relative overflow-hidden bg-cream section-padding pb-24 md:pb-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image */}
@@ -60,6 +61,7 @@ I also have the knowledge and expertise to create something better than your run
           </div>
         </div>
       </div>
+      <SectionFade to="blush" />
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import KitSignupEmbed from "@/components/KitSignupEmbed";
 import MeetYourCoach from "@/components/MeetYourCoach";
 import SectionFade from "@/components/SectionFade";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
@@ -18,14 +19,8 @@ const valueProps: ValueProp[] = [
   {
     title: "As You Are",
     description:
-      "Embrace whatever phase you are in - whether that is at 8 months pregnant, between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble. We'll find your pace and coach you from there.",
+      "Whether you're 8 months pregnant, between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble, we'll find your pace and coach you from there.",
   }
-//   {
-//     title: "As You Are",
-//     description:
-//       "Embrace whatever phase you are in - whether that is at 8 months pregnant, between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble. No pressure to bounce back. Just forward toward your goals at your pace.",
-//   },
-
 ];
 
 
@@ -36,7 +31,6 @@ export default function Home() {
       {/* Hero Section */}
       <Hero
         title="Erin Murphy, PT, DPT"
-        subtitle="💪 Mamas only ;)"
         description="Strength and empowerment for expecting mothers, postpartum recovery, and busy moms at any phase. Erin meets each mom wherever she is in her journey of motherhood and honors that place, supporting her with evidence-based and approachable exercise as well as support through the ups and downs."
         primaryCta={{ text: "Explore Resources", href: "/resources" }}
         secondaryCta={{ text: "About Your Coach", href: "/about" }}
@@ -78,6 +72,7 @@ export default function Home() {
 
       <MeetYourCoach />
       <TestimonialsCarousel />
+      <KitSignupEmbed />
       {/* Call to Action Section */}
       <section className="relative overflow-hidden bg-sage/20 section-padding pb-24 md:pb-32">
         <div className="max-w-3xl mx-auto text-center">
