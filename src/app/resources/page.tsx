@@ -8,23 +8,30 @@ import Button from "@/components/Button";
 import SectionFade from "@/components/SectionFade";
 import type { Resource } from "@/lib/types";
 
+// Synced to where you are in your pregnancy. Targeting full body strengthening, deep core and pelvic floor connection, focused preparation for birth, and laying the foundation for success and recovery in the postpartum period.  
+
+// Gentle mobility and reconnection for the early postpartum period, plus more focused rebuilding and progressive strength training for postpartum weeks 6–14. Take the guess work out of how to get back to doing what you love after the immense physical changes that take place during pregnancy and birth.
+
+// Start with Strength, 3x/week full body strength workouts to help you feel strong and capable living an active life long-term with a new block of programming every 8 weeks. Also a great option for moms wanting to prep their bodies for a future pregnancy.
+
+
 const programTeasers = [
   {
     id: "pregnancy-sync-workout-plans",
     title: "Pregnancy Synced Workout Plans",
-    subtitle: "Synced to where you are in your pregnancy",
+    subtitle: "Synced to where you are in your pregnancy. Targeting full body strengthening, deep core and pelvic floor connection, focused preparation for birth, and laying the foundation for success and recovery in the postpartum period.",
     price: "$147",
   },
   {
     id: "postpartum-workout-plans",
     title: "Postpartum Workout Plans",
-    subtitle: "Gentle mobility, reconnection, and progressive strength for early postpartum through weeks 6–14.",
+    subtitle: "Gentle mobility and reconnection for the early postpartum period, plus more focused rebuilding and progressive strength training for postpartum weeks 6–14. Take the guess work out of how to get back to doing what you love after the immense physical changes that take place during pregnancy and birth.",
     price: "$297",
   },
   {
     id: "moms-any-phase-of-life",
     title: "Moms in any phase of life",
-    subtitle: "Start with Strength, 3x/week full body strength workouts with a new block every 8 weeks",
+    subtitle: "Start with Strength, 3x/week full body strength workouts to help you feel strong and capable living an active life long-term with a new block of programming every 8 weeks. Also a great option for moms wanting to prep their bodies for a future pregnancy.",
     price: "$147",
   },
 ];
@@ -141,7 +148,7 @@ export default function ResourcesPage() {
 
       <ContactForm
         title="Not Sure Where to Start?"
-        description="Send a message about your goals and Erin will help point you in the right direction."
+        description="Send a message about your goals and I will help point you in the right direction."
       />
 
       {/* Email Capture Modal */}
