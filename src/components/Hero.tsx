@@ -5,7 +5,7 @@ interface HeroProps {
   title: string;
   decorativeText?: string;
   subtitle?: string;
-  description?: string;
+  description: string;
   primaryCta?: {
     text: string;
     href: string;
@@ -108,7 +108,7 @@ export default function Hero({
             )}
 
             {description && (
-              <p className="font-inter text-lg md:text-xl text-olive/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+              <p className="font-inter text-md md:text-xl text-olive/80 max-w-2xl mx-auto mb-10 leading-relaxed">
                 {description}
               </p>
             )}

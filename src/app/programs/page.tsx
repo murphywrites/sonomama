@@ -49,7 +49,6 @@ const programs: Program[] = [
     "",
     //   "Pregnancy Workout Plans synced to where you are in your pregnancy",
     buttonText: "Get Started",
-    stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-1.svg",
     features: [
       {
@@ -79,7 +78,6 @@ const programs: Program[] = [
     title: "Postpartum",
     description: "",
     buttonText: "Get Started",
-    stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-2.svg",
     features: [
       {
@@ -109,7 +107,6 @@ const programs: Program[] = [
     title: "Moms in any phase of life",
     description: "",
     buttonText: "Get Started",
-    stripeLink: "#stripe-link-placeholder",
     thumbnail: "/assets/resource-thumbnails/resource-3.svg",
     features: [
       {
@@ -122,7 +119,11 @@ const programs: Program[] = [
   }
 ];
 
-export default function ProgramsPage() {
+export default function ProgramsPage({
+  searchParams,
+}: {
+  searchParams?: { checkout?: string };
+}) {
   return (
     <>
       {/* Header */}
@@ -143,6 +144,16 @@ export default function ProgramsPage() {
         <SectionFade to="white" />
       </section>
 
+      {searchParams?.checkout === "success" && (
+        <div
+          role="status"
+          className="bg-sage/20 px-6 py-4 text-center font-inter text-sm text-olive"
+        >
+          Thank you! Your payment was submitted successfully. Erin will follow
+          up by email.
+        </div>
+      )}
+
       {/* Programs Grid */}
       <section className="relative overflow-hidden bg-white pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
@@ -152,6 +163,24 @@ export default function ProgramsPage() {
             ))}
           </div>
         </div>
+
+{/* App Access
+All programs are accessed via the easy-to-use Train Heroic app.
+Direct access to ask Erin questions and get feedback on form
+Detailed exercise video demos with instructions, tips, and cues
+Recommended reps, sets, and load
+Help from Erin with modifications and progressions based on your individual needs
+Easily track your progress session to session
+
+
+Recommended Equipment
+Dumbbells 
+Long resistance bands
+Short looped resistance bands
+Workout bench (can usually sub an ottoman, couch, box step, etc)
+Large exercise ball (especially for 3rd trimester program)
+Small pilates ball (can be subbed for a rolled up towel or pillow) */}
+
         {/* Train Heroic access note */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-12 md:pt-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -163,11 +192,11 @@ export default function ProgramsPage() {
                 All programs are accessed via the easy-to-use Train Heroic app.
               </p>
               <ul className="font-inter text-olive/80 space-y-2 list-disc list-inside md:list-outside md:pl-5 text-left">
-                <li>Detailed video demos with tips and cues</li>
-                <li>Recommended reps, sets, and load</li>
-                <li>Direct access to ask Erin questions and get feedback on form</li>
-                <li>Help with modifications and progressions</li>
-                <li>Easily track your progress session to session</li>
+                <li>Direct access to ask Erin questions and get personalized feedback on your form</li>
+                <li>Detailed exercise video demos with instructions, tips, and cues</li>
+                <li>Recommended reps, sets, and load for every session</li>
+                <li>Help from Erin with modifications and progressions based on your individual needs</li>
+                <li>Easily track your progress session to session in the app</li>
               </ul>
             </div>
             <div className="relative w-full aspect-[4/3] max-w-md mx-auto md:max-w-none">
@@ -182,9 +211,36 @@ export default function ProgramsPage() {
           </div>
         </div>
 
-        <SectionFade to="sage-light" />
+        <SectionFade to="blush" />
       </section>
-      
+      {/* Recommended Equipment
+Dumbbells 
+Long resistance bands
+Short looped resistance bands
+Workout bench (can usually sub an ottoman, couch, box step, etc)
+Large exercise ball (especially for 3rd trimester program)
+Small pilates ball (can be subbed for a rolled up towel or pillow) */}
+
+      <section className="relative overflow-hidden bg-blush pb-24 md:pb-32">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="text-center md:text-left">
+              <h2 className="font-cormorant text-section-mobile md:text-2xl font-semibold text-olive mb-4">
+                Recommended Equipment
+              </h2>
+              <ul className="font-inter text-olive/80 space-y-2 list-disc list-inside md:list-outside md:pl-5 text-left">
+                <li>Dumbbells</li>
+                <li>Long resistance bands</li>
+                <li>Short looped resistance bands</li>
+                <li>Workout bench (can usually sub an ottoman, couch, box step, etc)</li>
+                <li>Large exercise ball (especially for 3rd trimester program)</li>
+                <li>Small pilates ball (can be subbed for a rolled up towel or pillow)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <SectionFade to="cream" />
+      </section>
 
       <ContactForm
         title="Not Sure Which Program Is Right for You?"

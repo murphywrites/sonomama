@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import Button from "./Button";
+import ProgramCheckoutModal from "./ProgramCheckoutModal";
 import type { Program, ProgramFeature } from "@/lib/types";
 
 interface ProgramCardProps {
@@ -81,13 +82,15 @@ function ChevronIcon({ expanded }: { expanded: boolean }) {
 
 export default function ProgramCard({ program }: ProgramCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
   const panelId = useId();
   const previewFeatures = program.features.slice(0, 1);
   const extraFeatures = program.features.slice(1);
   const hasMore = extraFeatures.length > 0;
 
   return (
-    <article className="bg-white flex flex-col h-full overflow-hidden max-lg:py-8 lg:rounded-2xl lg:shadow-card lg:border lg:border-blush/40">
+    <>
+      <article className="bg-white flex flex-col h-full overflow-hidden max-lg:py-8 lg:rounded-2xl lg:shadow-card lg:border lg:border-blush/40">
       {program.badge && (
         <div className="bg-terracotta text-white font-inter text-xs font-medium tracking-wide uppercase text-center py-2 px-4">
           {program.badge}
@@ -168,13 +171,21 @@ export default function ProgramCard({ program }: ProgramCardProps) {
           )}
           <Button
             variant="primary"
-            href={program.stripeLink}
+            onClick={() => setCheckoutOpen(true)}
             className="w-full justify-center"
           >
             {program.buttonText}
           </Button>
         </div>
       </div>
-    </article>
+      </article>
+      {checkoutOpen && (
+        <ProgramCheckoutModal
+          programId={program.id}
+          programTitle={program.title}
+          onClose={() => setCheckoutOpen(false)}
+        />
+      )}
+    </>
   );
 }

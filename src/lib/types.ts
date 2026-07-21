@@ -26,15 +26,18 @@ export interface ProgramFeatureGroup {
 }
 
 export type ProgramFeature = string | ProgramFeatureGroup;
+export type ProgramId =
+  | "pregnancy-synced"
+  | "postpartum"
+  | "moms-any-phase";
 
 export interface Program {
-  id: string;
+  id: ProgramId;
   title: string;
   description: string;
   price?: string;
   priceNote?: string;
   buttonText: string;
-  stripeLink: string;
   thumbnail?: string;
   features: ProgramFeature[];
   badge?: string;

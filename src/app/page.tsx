@@ -5,21 +5,22 @@ import SectionFade from "@/components/SectionFade";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import type { ValueProp } from "@/lib/types";
 
+
 const valueProps: ValueProp[] = [
   {
     title: "Evidence-Based Programs",
     description:
-      "Movements and progressions that are chosen carefully to take into account anatomy, biomechanics, and the specific changes that occur throughout the perinatal time frame.",
+      "Thoughtfully chosen movements, progressions, and modifications to account for the specific changes that occur throughout the perinatal time frame, while still aiming to build strength. I’ll handle the well thought out programming so you can just show up confidently and get straight to it.",
   },
   {
     title: "Perinatal Specialization",
     description:
-      "From pregnancy through postpartum and beyond — supporting your body through every phase of motherhood. It’s never too late.",
+      "With background as a Doctor of Physical Therapy and additional certification as a Pregnancy and Postpartum Exercise Specialist, I offer programs specifically designed to best support you through every phase of motherhood–pregnancy, postpartum, and beyond. It’s never too late to show up for yourself.",
   },
   {
     title: "As You Are",
     description:
-      "Whether you're 8 months pregnant, between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble, we'll find your pace and coach you from there.",
+      "Whether you're 8 months pregnant prepping for birth, showing up between feeding sessions with your 2 month old, or trying to fit in a lift while keeping your toddler out of trouble, I’ll meet you where you are and help guide you to where you want to be.",
   }
 ];
 
@@ -31,17 +32,35 @@ export default function Home() {
       {/* Hero Section */}
       <Hero
         title="Erin Murphy, PT, DPT"
-        description="Strength and empowerment for expecting mothers, postpartum recovery, and busy moms at any phase. Erin meets each mom wherever she is in her journey of motherhood and honors that place, supporting her with evidence-based and approachable exercise as well as support through the ups and downs."
-        primaryCta={{ text: "Explore Resources", href: "/resources" }}
+        description="Evidence-based exercise and education for women who want to feel seen, supported, and strong as hell."
+        primaryCta={{ text: "Explore Programs", href: "/programs" }}
         secondaryCta={{ text: "About Your Coach", href: "/about" }}
         backgroundImage="/assets/hero-placeholder.svg"
         fullHeight
       />
 
-      
+      <section className="relative overflow-hidden bg-cream section-padding pt-0 md:pt-4 pb-16 md:pb-20">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text- mb-4">
+            Why The Murphy Method?
+          </h2>
+          <p className="font-inter text-olive/80 leading-relaxed w-full md:w-1/2 mx-auto">
+            The Murphy Method helps you feel confident diving into strength
+            training during whatever phase of motherhood you find yourself —
+            pregnancy, postpartum, or busy moms further into the wild ride of
+            motherhood. This is far more than your typical influencer mom
+            workout plan. As a physical therapist, long time coach, and mom
+            myself, I have poured my passion and expertise into these programs
+            that combine up-to-date evidence and approachable exercise. Plus,
+            having direct access and support from me provides peace of mind
+            through the ups and downs during this critical perinatal time frame.
+          </p>
+        </div>
+        <SectionFade to="blush" />
+      </section>
 
       {/* Value Props Section */}
-      <section className="relative overflow-hidden bg-white section-padding pt-0 md:pt-4 pb-16 md:pb-20">
+      <section className="relative overflow-hidden bg-blush section-padding pt-0 md:pt-4 pb-16 md:pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-stretch">
             {valueProps.map((prop, index) => (
@@ -74,7 +93,7 @@ export default function Home() {
       <TestimonialsCarousel />
       <KitSignupEmbed />
       {/* Call to Action Section */}
-      <section className="relative overflow-hidden bg-sage/20 section-padding pb-24 md:pb-32">
+      <section className="relative overflow-hidden bg-cream section-padding pb-24 md:pb-32">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-6">
             Ready to Begin Your Journey?

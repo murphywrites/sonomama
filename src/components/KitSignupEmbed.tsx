@@ -28,7 +28,7 @@ export default function KitSignupEmbed() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-sage/15 section-padding pb-24 md:pb-32">
+    <section className="relative overflow-hidden bg-cream section-padding pb-24 md:pb-32">
       <div className="max-w-2xl mx-auto text-center">
         <p className="font-inter text-olive/80 mb-8 max-w-lg mx-auto">
           Join our community for evidence-based tips, movement inspiration, and
@@ -40,7 +40,7 @@ export default function KitSignupEmbed() {
           className="kit-form-wrapper mx-auto w-full max-w-[700px] min-h-[120px]"
         />
       </div>
-      <SectionFade to="sage" />
+      <SectionFade to="cream" />
     </section>
   );
 }

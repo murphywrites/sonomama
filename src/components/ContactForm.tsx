@@ -73,9 +73,9 @@ export default function ContactForm({
 
   if (isSuccess) {
     return (
-      <section className="relative overflow-hidden bg-sage/15 section-padding pb-24 md:pb-32">
+      <section className="relative overflow-hidden bg-cream section-padding pb-24 md:pb-32">
         <div className="max-w-xl mx-auto px-6 md:px-12 text-center">
-          <div className="w-16 h-16 bg-sage/30 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-cream rounded-full flex items-center justify-center mx-auto mb-4">
             <svg
               className="w-8 h-8 text-olive"
               fill="none"
@@ -98,13 +98,13 @@ export default function ContactForm({
             Thanks for reaching out. Erin will reply to your email soon.
           </p>
         </div>
-        <SectionFade to="olive" />
+        <SectionFade to="sage" />
       </section>
     );
   }
 
   return (
-    <section className="relative overflow-hidden bg-sage/15 section-padding pb-24 md:pb-32">
+    <section className="relative overflow-hidden bg-cream section-padding pb-24 md:pb-32">
       <div className="max-w-xl mx-auto px-6 md:px-12">
         <div className="text-center mb-8">
           <h2 className="font-cormorant text-section-mobile md:text-section font-semibold text-olive mb-4">

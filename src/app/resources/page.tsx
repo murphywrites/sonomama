@@ -102,11 +102,11 @@ export default function ResourcesPage() {
             ))}
           </div>
         </div>
-        <SectionFade to="sage-light" />
+        <SectionFade to="blush" />
       </section>
 
       {/* Programs Teaser Strip */}
-      <section className="relative overflow-hidden bg-sage/15 py-10 md:py-12 pb-24 md:pb-32">
+      <section className="relative overflow-hidden bg-blush py-10 md:py-12 pb-24 md:pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
           <p className="font-inter text-sm text-olive/60 uppercase tracking-wide text-center mb-6">
             {"Looking for structured programs?"}
@@ -135,7 +135,7 @@ export default function ResourcesPage() {
             </Button>
           </div>
         </div>
-        <SectionFade to="sage-light" />
+        <SectionFade to="cream" />
       </section>
 
 

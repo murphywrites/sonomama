@@ -15,7 +15,7 @@ const config: Config = {
           dark: "#E0247F",
         },
         sage: {
-          DEFAULT: "#00E5FF",  // Cyan/turquoise - section backgrounds
+          DEFAULT: "#0b719e",  // Cyan/turquoise - section backgrounds
           light: "#5EECFF",
         },
         cream: {

@@ -45,7 +45,7 @@ export default function Navigation() {
             href="/"
             className="font-cormorant text-xl md:text-2xl font-semibold text-olive tracking-wide hover:text-terracotta transition-colors"
           >
-            THE MURPHY METHOD - ERIN MURPHY, PT, DPT
+            THE MURPHY METHOD
           </Link>
 
           {/* Desktop Navigation */}

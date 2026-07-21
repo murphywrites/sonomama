@@ -2,7 +2,6 @@ type SectionFadeTarget =
   | "white"
   | "cream"
   | "blush"
-  | "sage-light"
   | "sage"
   | "olive";
 
@@ -10,10 +9,9 @@ type SectionFadeTarget =
 const fadeColors: Record<SectionFadeTarget, string> = {
   white: "#ffffff",
   cream: "#FFF8F5",
-  blush: "color-mix(in srgb, #FFB4D2 30%, #FFF8F5)",
-  "sage-light": "color-mix(in srgb, #00E5FF 15%, #FFF8F5)",
+  blush: "#FFB4D2",
   sage: "color-mix(in srgb, #00E5FF 20%, #FFF8F5)",
-  olive: "#0D1B2A",
+  olive: "#0b719e",
 };
 
 interface SectionFadeProps {
