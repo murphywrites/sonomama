@@ -4,22 +4,21 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  // Absolute URLs for og:image — crawlers cannot fetch localhost.
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://themurphymethod.co"
   ),
   title: "Erin Murphy, DPT | Perinatal Strength & Movement",
   description:
     "Evidence-based strength coaching for moms. Perinatal specialist supporting your journey with compassion and expertise.",
   keywords:
     "perinatal physical therapy, postpartum fitness, mom strength training, pelvic floor, diastasis recti",
-  icons: {
-    icon: "/assets/logos/murphymethodlogo.png",
-    apple: "/assets/logos/murphymethodlogo.png",
-  },
   openGraph: {
     title: "Erin Murphy, DPT | Perinatal Strength & Movement",
     description:
       "Evidence-based strength coaching for moms. Perinatal specialist supporting your journey with compassion and expertise.",
+    url: "/",
+    siteName: "The Murphy Method",
     images: [
       {
         url: "/assets/logos/murphymethodlogo.png",
