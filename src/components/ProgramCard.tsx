@@ -98,15 +98,9 @@ export default function ProgramCard({ program }: ProgramCardProps) {
       )}
 
       <div className="flex flex-col flex-1 h-full lg:p-8">
-        <h3 className="font-cormorant text-2xl font-semibold text-olive mb-2">
+        <h3 className="font-cormorant text-2xl font-semibold text-olive mb-6">
           {program.title}
         </h3>
-
-        {program.description && (
-          <p className="font-inter text-olive/75 leading-relaxed mb-6">
-            {program.description}
-          </p>
-        )}
 
         <div className="flex flex-col flex-1 min-h-0">
           <ul className="space-y-3">
@@ -158,7 +152,7 @@ export default function ProgramCard({ program }: ProgramCardProps) {
 
         <div className="border-t border-blush/40 pt-6 mt-auto">
           {program.price && (
-            <div className="flex items-baseline gap-1 mb-4">
+            <div className="flex items-baseline gap-1 mb-3">
               <span className="font-cormorant text-3xl font-semibold text-olive">
                 {program.price}
               </span>
@@ -168,6 +162,11 @@ export default function ProgramCard({ program }: ProgramCardProps) {
                 </span>
               )}
             </div>
+          )}
+          {program.description && (
+            <p className="font-inter text-sm text-olive/75 leading-relaxed mb-4">
+              {program.description}
+            </p>
           )}
           <Button
             variant="primary"

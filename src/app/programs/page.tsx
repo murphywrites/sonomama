@@ -46,8 +46,9 @@ const programs: Program[] = [
     id: "pregnancy-synced",
     title: "Pregnancy",
     description:
-    "",
-    //   "Pregnancy Workout Plans synced to where you are in your pregnancy",
+      "for specialized programming, direct access to a Doctor of Physical Therapy for questions and feedback on form, accountability and support through the ups and downs of pregnancy.",
+    price: "$95",
+    priceNote: "/month",
     buttonText: "Get Started",
     thumbnail: "/assets/resource-thumbnails/resource-1.svg",
     features: [
@@ -76,7 +77,10 @@ const programs: Program[] = [
   {
     id: "postpartum",
     title: "Postpartum",
-    description: "",
+    description:
+      "for specialized programming, direct access to a Doctor of Physical Therapy for questions and feedback on form, accountability and support through your postpartum journey.",
+    price: "$95",
+    priceNote: "/month",
     buttonText: "Get Started",
     thumbnail: "/assets/resource-thumbnails/resource-2.svg",
     features: [
@@ -105,7 +109,10 @@ const programs: Program[] = [
   {
     id: "moms-any-phase",
     title: "Moms in any phase of life",
-    description: "",
+    description:
+      "for programming rooted in evidence to get you strong, direct access to a Doctor of Physical Therapy for questions and feedback on form, accountability and support through the ups and downs of motherhood.",
+    price: "$75",
+    priceNote: "/month",
     buttonText: "Get Started",
     thumbnail: "/assets/resource-thumbnails/resource-3.svg",
     features: [
@@ -116,7 +123,7 @@ const programs: Program[] = [
         ],
       },
     ],
-  }
+  },
 ];
 
 export default function ProgramsPage({
@@ -197,6 +204,7 @@ Small pilates ball (can be subbed for a rolled up towel or pillow) */}
                 <li>Recommended reps, sets, and load for every session</li>
                 <li>Help from Erin with modifications and progressions based on your individual needs</li>
                 <li>Easily track your progress session to session in the app</li>
+                <li>Accountability to stay consistent</li>
               </ul>
             </div>
             <div className="relative w-full aspect-[4/3] max-w-md mx-auto md:max-w-none">
