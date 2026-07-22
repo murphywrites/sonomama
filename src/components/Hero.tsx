@@ -48,8 +48,9 @@ export default function Hero({
         src="/assets/artwork/motherandchild-cropped.png"
         alt=""
         aria-hidden="true"
-        className="absolute z-[1] pointer-events-none left-0 bottom-[8%] md:bottom-[6%] h-[58%] md:h-[68%] w-auto max-w-[44%] md:max-w-[30%] object-contain object-left-bottom"
+        className="hidden md:block absolute z-[1] pointer-events-none left-0 bottom-[8%] md:bottom-[6%] h-[58%] md:h-[68%] w-auto max-w-[44%] md:max-w-[30%] object-contain object-left-bottom"
       />
+
 
       {/* Soft right-side wash so glass content stays readable */}
       <div
