@@ -4,11 +4,39 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Erin Murphy, DPT | Perinatal Strength & Movement Coaching",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  title: "Erin Murphy, DPT | Perinatal Strength & Movement",
   description:
-    "Evidence-based physical therapy and strength coaching for moms. Perinatal specialists supporting your journey with compassion and expertise.",
+    "Evidence-based strength coaching for moms. Perinatal specialist supporting your journey with compassion and expertise.",
   keywords:
     "perinatal physical therapy, postpartum fitness, mom strength training, pelvic floor, diastasis recti",
+  icons: {
+    icon: "/assets/logos/murphymethodlogo.png",
+    apple: "/assets/logos/murphymethodlogo.png",
+  },
+  openGraph: {
+    title: "Erin Murphy, DPT | Perinatal Strength & Movement",
+    description:
+      "Evidence-based strength coaching for moms. Perinatal specialist supporting your journey with compassion and expertise.",
+    images: [
+      {
+        url: "/assets/logos/murphymethodlogo.png",
+        width: 1551,
+        height: 1548,
+        alt: "Murphy Method logo",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Erin Murphy, DPT | Perinatal Strength & Movement",
+    description:
+      "Evidence-based strength coaching for moms. Perinatal specialist supporting your journey with compassion and expertise.",
+    images: ["/assets/logos/murphymethodlogo.png"],
+  },
 };
 
 export default function RootLayout({
