@@ -1,6 +1,7 @@
 interface CheckoutConfirmationEmailProps {
   name: string;
   programName: string;
+  orderNumber: string;
   formDetailsHtml: string;
 }
 
@@ -24,6 +25,7 @@ function escapeHtml(text: string): string {
 export function buildCheckoutConfirmationEmailHtml({
   name,
   programName,
+  orderNumber,
   formDetailsHtml,
 }: CheckoutConfirmationEmailProps): string {
   return `
@@ -65,6 +67,10 @@ export function buildCheckoutConfirmationEmailHtml({
 
               <p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:15px;color:${colors.olive};line-height:1.7;">
                 <strong>Your program:</strong> ${escapeHtml(programName)}
+              </p>
+
+              <p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:15px;color:${colors.olive};line-height:1.7;">
+                <strong>Subscription / order number:</strong> ${escapeHtml(orderNumber)}
               </p>
 
               <p style="margin:24px 0 8px;font-family:Arial,sans-serif;font-size:15px;color:${colors.olive};line-height:1.7;">

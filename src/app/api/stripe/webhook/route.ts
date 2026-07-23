@@ -136,6 +136,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         }).format(session.amount_total / 100)
       : "Not available";
   const programName = PROGRAM_NAMES[intake.program_id] ?? intake.program_id;
+  const orderNumber = subscriptionId ?? session.id;
   const formDetailsHtml = intakeDetailsHtml(intake);
   const resend = new Resend(resendApiKey);
 
@@ -149,6 +150,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         html: `
           <h2>New paid program signup</h2>
           <p><strong>Program:</strong> ${escapeHtml(programName)}</p>
+          <p><strong>Subscription / order number:</strong> ${escapeHtml(orderNumber)}</p>
           ${formDetailsHtml}
           <hr />
           <h3>Payment details</h3>
@@ -170,6 +172,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         html: buildCheckoutConfirmationEmailHtml({
           name: intake.name,
           programName,
+          orderNumber,
           formDetailsHtml,
         }),
       },
