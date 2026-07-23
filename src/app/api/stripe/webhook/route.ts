@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import Stripe from "stripe";
+import { buildCheckoutConfirmationEmailHtml } from "@/lib/emails/checkoutConfirmationEmail";
 import { createServerClient } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
@@ -43,19 +44,29 @@ function formatDate(value: string): string {
 
 function intakeDetailsHtml(intake: IntakeRecord): string {
   const details = intake.intake_details;
+  const lines: string[] = [
+    `<p style="margin:0 0 8px;"><strong>Name:</strong> ${escapeHtml(intake.name)}</p>`,
+    `<p style="margin:0 0 8px;"><strong>Email:</strong> ${escapeHtml(intake.email)}</p>`,
+  ];
 
   if (details.dueDate) {
-    return `<p><strong>Upcoming due date:</strong> ${escapeHtml(formatDate(details.dueDate))}</p>`;
+    lines.push(
+      `<p style="margin:0 0 8px;"><strong>Upcoming due date:</strong> ${escapeHtml(formatDate(details.dueDate))}</p>`
+    );
   }
   if (details.deliveryDates?.length) {
     const dates = details.deliveryDates.map(formatDate).join(", ");
-    return `<p><strong>Delivery date(s):</strong> ${escapeHtml(dates)}</p>`;
+    lines.push(
+      `<p style="margin:0 0 8px;"><strong>Delivery date(s):</strong> ${escapeHtml(dates)}</p>`
+    );
   }
   if (details.kidAges?.length) {
-    return `<p><strong>Kid(s) ages:</strong> ${escapeHtml(details.kidAges.join(", "))}</p>`;
+    lines.push(
+      `<p style="margin:0;"><strong>Kid(s) ages:</strong> ${escapeHtml(details.kidAges.join(", "))}</p>`
+    );
   }
 
-  return "";
+  return lines.join("\n");
 }
 
 function stripeId(
@@ -125,33 +136,57 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         }).format(session.amount_total / 100)
       : "Not available";
   const programName = PROGRAM_NAMES[intake.program_id] ?? intake.program_id;
+  const formDetailsHtml = intakeDetailsHtml(intake);
   const resend = new Resend(resendApiKey);
-  const result = await resend.emails.send(
-    {
-      from: `The Murphy Method <${fromEmail}>`,
-      to: toEmail,
-      replyTo: intake.email,
-      subject: `New paid ${programName} signup — ${intake.name}`,
-      html: `
-        <h2>New paid program signup</h2>
-        <p><strong>Program:</strong> ${escapeHtml(programName)}</p>
-        <p><strong>Name:</strong> ${escapeHtml(intake.name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(intake.email)}</p>
-        ${intakeDetailsHtml(intake)}
-        <hr />
-        <h3>Payment details</h3>
-        <p><strong>Initial payment:</strong> ${escapeHtml(amount)}</p>
-        <p><strong>Payment status:</strong> ${escapeHtml(session.payment_status)}</p>
-        <p><strong>Checkout Session:</strong> ${escapeHtml(session.id)}</p>
-        <p><strong>Subscription:</strong> ${escapeHtml(subscriptionId ?? "Not available")}</p>
-        <p><strong>Customer:</strong> ${escapeHtml(customerId ?? "Not available")}</p>
-      `,
-    },
-    { idempotencyKey: `program-checkout/${session.id}` }
-  );
 
-  if (result.error) {
-    throw new Error(`Resend purchase email failed: ${result.error.message}`);
+  const [adminResult, customerResult] = await Promise.all([
+    resend.emails.send(
+      {
+        from: `The Murphy Method <${fromEmail}>`,
+        to: toEmail,
+        replyTo: intake.email,
+        subject: `New paid ${programName} signup — ${intake.name}`,
+        html: `
+          <h2>New paid program signup</h2>
+          <p><strong>Program:</strong> ${escapeHtml(programName)}</p>
+          ${formDetailsHtml}
+          <hr />
+          <h3>Payment details</h3>
+          <p><strong>Initial payment:</strong> ${escapeHtml(amount)}</p>
+          <p><strong>Payment status:</strong> ${escapeHtml(session.payment_status)}</p>
+          <p><strong>Checkout Session:</strong> ${escapeHtml(session.id)}</p>
+          <p><strong>Subscription:</strong> ${escapeHtml(subscriptionId ?? "Not available")}</p>
+          <p><strong>Customer:</strong> ${escapeHtml(customerId ?? "Not available")}</p>
+        `,
+      },
+      { idempotencyKey: `program-checkout/${session.id}` }
+    ),
+    resend.emails.send(
+      {
+        from: `Erin Murphy, DPT <${fromEmail}>`,
+        to: intake.email,
+        replyTo: fromEmail,
+        subject: `Welcome to ${programName} — you're in!`,
+        html: buildCheckoutConfirmationEmailHtml({
+          name: intake.name,
+          programName,
+          formDetailsHtml,
+        }),
+      },
+      { idempotencyKey: `program-checkout-customer/${session.id}` }
+    ),
+  ]);
+
+  if (adminResult.error) {
+    throw new Error(
+      `Resend purchase notification failed: ${adminResult.error.message}`
+    );
+  }
+
+  if (customerResult.error) {
+    throw new Error(
+      `Resend customer confirmation failed: ${customerResult.error.message}`
+    );
   }
 }
 
