@@ -166,7 +166,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         from: `Erin Murphy, DPT <${fromEmail}>`,
         to: intake.email,
         replyTo: fromEmail,
-        subject: `Welcome to ${programName} — you're in!`,
+        subject: `Welcome to The Murphy Method - ${programName} Program — you're in!`,
         html: buildCheckoutConfirmationEmailHtml({
           name: intake.name,
           programName,
