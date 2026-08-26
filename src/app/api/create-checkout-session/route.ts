@@ -140,7 +140,15 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (intakeError || !intake) {
-      console.error("Failed to save program intake:", intakeError);
+      const details = `${intakeError?.message ?? ""} ${intakeError?.details ?? ""}`;
+      if (/ENOTFOUND|getaddrinfo|fetch failed/i.test(details)) {
+        console.error(
+          "Failed to save program intake: Supabase host could not be reached. Check NEXT_PUBLIC_SUPABASE_URL.",
+          intakeError
+        );
+      } else {
+        console.error("Failed to save program intake:", intakeError);
+      }
       return NextResponse.json(
         { error: "Unable to start checkout. Please try again." },
         { status: 500 }
