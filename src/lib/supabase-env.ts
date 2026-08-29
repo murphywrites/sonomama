@@ -8,15 +8,16 @@ function firstEnv(...keys: string[]): string | undefined {
 
 export function getSupabaseUrl(): string {
   const url = firstEnv(
+    // Canonical names (use these in .env.local)
     "NEXT_PUBLIC_SUPABASE_URL",
     "SUPABASE_URL",
-    // Vercel + Supabase integration can double the prefix.
+    // Vercel Supabase integration (prefix: NEXT_PUBLIC_SUPABASE)
     "NEXT_PUBLIC_SUPABASE_SUPABASE_URL"
   );
 
   if (!url) {
     throw new Error(
-      "Missing Supabase URL. Set NEXT_PUBLIC_SUPABASE_URL to https://<project-ref>.supabase.co"
+      "Missing Supabase URL. Set NEXT_PUBLIC_SUPABASE_URL (or copy NEXT_PUBLIC_SUPABASE_SUPABASE_URL from the Vercel integration)"
     );
   }
 
@@ -25,14 +26,18 @@ export function getSupabaseUrl(): string {
 
 export function getSupabasePublishableKey(): string {
   const key = firstEnv(
+    // Canonical names
     "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-    "NEXT_PUBLIC_SUPABASE_SUPABASE_PUBLISHABLE_KEY"
+    // Vercel Supabase integration aliases
+    "NEXT_PUBLIC_SUPABASE_SUPABASE_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_SUPABASE_SUPABASE_ANON_KEY",
+    "NEXT_PUBLIC_NEXT_PUBLIC_SUPABASE_SUPABASE_PUBLISHABLE_KEY"
   );
 
   if (!key) {
     throw new Error(
-      "Missing Supabase publishable key. Set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY"
+      "Missing Supabase publishable key. Set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (or copy the anon/publishable key from the Vercel integration)"
     );
   }
 
@@ -40,11 +45,18 @@ export function getSupabasePublishableKey(): string {
 }
 
 export function getSupabaseSecretKey(): string {
-  const key = firstEnv("SUPABASE_SECRET_KEY", "SUPABASE_SERVICE_ROLE_KEY");
+  const key = firstEnv(
+    // Canonical names
+    "SUPABASE_SECRET_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    // Vercel Supabase integration aliases (server-only; not in the public snippet)
+    "SUPABASE_SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_SUPABASE_SECRET_KEY"
+  );
 
   if (!key) {
     throw new Error(
-      "Missing Supabase secret key. Set SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY"
+      "Missing Supabase secret key. Set SUPABASE_SECRET_KEY from Supabase Dashboard → Project Settings → API"
     );
   }
 
