@@ -8,31 +8,45 @@ import Button from "@/components/Button";
 import SectionFade from "@/components/SectionFade";
 import type { Resource } from "@/lib/types";
 
-// Synced to where you are in your pregnancy. Targeting full body strengthening, deep core and pelvic floor connection, focused preparation for birth, and laying the foundation for success and recovery in the postpartum period.  
+// Synced to where you are in your pregnancy. Targeting full body strengthening, deep core and pelvic floor connection, focused preparation for birth, and laying the foundation for success and recovery in the postpartum period.
 
-// Gentle mobility and reconnection for the early postpartum period, plus more focused rebuilding and progressive strength training for postpartum weeks 6–14. Take the guess work out of how to get back to doing what you love after the immense physical changes that take place during pregnancy and birth.
-
-// Start with Strength, 3x/week full body strength workouts to help you feel strong and capable living an active life long-term with a new block of programming every 8 weeks. Also a great option for moms wanting to prep their bodies for a future pregnancy.
-
+// Gentle mobility and reconnection for the early postpartum period, starting as early as Day 1 after birth, plus more focused rebuilding and progressive strength training for postpartum weeks 6–14.
 
 const programTeasers = [
   {
     id: "pregnancy-sync-workout-plans",
-    title: "Pregnancy Synced Workout Plans",
-    subtitle: "Synced to where you are in your pregnancy. Targeting full body strengthening, deep core and pelvic floor connection, focused preparation for birth, and laying the foundation for success and recovery in the postpartum period.",
-    price: "$147",
+    title: "Pregnancy Plans",
+    subtitle:
+      "Synced to where you are in your pregnancy. Targeting full body strengthening, deep core and pelvic floor connection, focused preparation for birth, and laying the foundation for success and recovery in the postpartum period.",
+    price: "$150",
   },
   {
     id: "postpartum-workout-plans",
-    title: "Postpartum Workout Plans",
-    subtitle: "Gentle mobility and reconnection for the early postpartum period, plus more focused rebuilding and progressive strength training for postpartum weeks 6–14. Take the guess work out of how to get back to doing what you love after the immense physical changes that take place during pregnancy and birth.",
-    price: "$297",
+    title: "Postpartum Plans",
+    subtitle:
+      "Gentle mobility and reconnection starting as early as Day 1 after birth, plus more focused rebuilding and progressive strength training for postpartum weeks 6–14.",
+    price: "$150",
   },
   {
     id: "moms-any-phase-of-life",
     title: "Moms in any phase of life",
-    subtitle: "Start with Strength, 3x/week full body strength workouts to help you feel strong and capable living an active life long-term with a new block of programming every 8 weeks. Also a great option for moms wanting to prep their bodies for a future pregnancy.",
-    price: "$147",
+    subtitle:
+      "3x/week full body strength focused on progressive overload, optional mobility and core work, and a new training block every 6–8 weeks.",
+    price: "$135",
+  },
+  {
+    id: "pregnancy-prep",
+    title: "Strong Mom Pregnancy Prep",
+    subtitle:
+      "A 12-week preconception program you can shorten or extend, with strength training focused on pelvic and core stability.",
+    price: "$135",
+  },
+  {
+    id: "one-on-one",
+    title: "1:1 Training",
+    subtitle:
+      "Completely personalized to your stage of life, goals, challenges, time, and equipment.",
+    price: "$300",
   },
 ];
 
@@ -118,7 +132,7 @@ export default function ResourcesPage() {
           <p className="font-inter text-sm text-olive/60 uppercase tracking-wide text-center mb-6">
             {"Looking for structured programs?"}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {programTeasers.map((p) => (
               <div
                 key={p.id}

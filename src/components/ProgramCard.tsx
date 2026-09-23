@@ -86,15 +86,20 @@ export default function ProgramCard({ program }: ProgramCardProps) {
 
           <div className="border-t border-blush/40 pt-6 mt-auto">
             {program.price && (
-              <div className="flex items-baseline gap-1 mb-3">
-                <span className="font-cormorant text-3xl font-semibold text-olive">
-                  {program.price}
-                </span>
-                {program.priceNote && (
-                  <span className="font-inter text-sm text-olive/50">
-                    {program.priceNote}
+              <div className="mb-3">
+                <div className="flex items-baseline gap-1">
+                  <span className="font-cormorant text-3xl font-semibold text-olive">
+                    {program.price}
                   </span>
-                )}
+                  {program.priceNote && (
+                    <span className="font-inter text-sm text-olive/50">
+                      {program.priceNote}
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 font-inter text-sm text-olive/60">
+                  Includes a 7-day free trial
+                </p>
               </div>
             )}
             {program.description && (

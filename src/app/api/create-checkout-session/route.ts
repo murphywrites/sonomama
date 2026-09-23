@@ -9,16 +9,24 @@ const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 const PROGRAMS = {
   "pregnancy-synced": {
-    name: "Pregnancy",
+    name: "Pregnancy Plans",
     priceEnv: "STRIPE_PRICE_PREGNANCY",
   },
   postpartum: {
-    name: "Postpartum",
+    name: "Postpartum Plans",
     priceEnv: "STRIPE_PRICE_POSTPARTUM",
   },
   "moms-any-phase": {
     name: "Moms in any phase of life",
     priceEnv: "STRIPE_PRICE_MOMS_ANY_PHASE",
+  },
+  "pregnancy-prep": {
+    name: "Strong Mom Pregnancy Prep",
+    priceEnv: "STRIPE_PRICE_PREGNANCY_PREP",
+  },
+  "one-on-one": {
+    name: "1:1 Training",
+    priceEnv: "STRIPE_PRICE_ONE_ON_ONE",
   },
 } as const;
 
@@ -31,6 +39,8 @@ interface CheckoutBody {
   dueDate?: string;
   deliveryDates?: string[];
   kidAges?: string[];
+  ttcNotes?: string;
+  goals?: string;
 }
 
 function isProgramId(value: string | undefined): value is ProgramId {
@@ -89,7 +99,36 @@ function validateDetails(body: CheckoutBody): string | null {
     }
   }
 
+  if (body.programId === "pregnancy-prep") {
+    if (!body.ttcNotes?.trim() || body.ttcNotes.trim().length > 500) {
+      return "A short note about your TTC journey is required";
+    }
+  }
+
+  if (body.programId === "one-on-one") {
+    if (!body.goals?.trim() || body.goals.trim().length > 1000) {
+      return "A short note about your goals is required";
+    }
+  }
+
   return null;
+}
+
+function intakeDetailsFor(body: CheckoutBody) {
+  switch (body.programId) {
+    case "pregnancy-synced":
+      return { dueDate: body.dueDate };
+    case "postpartum":
+      return { deliveryDates: body.deliveryDates };
+    case "moms-any-phase":
+      return { kidAges: body.kidAges!.map((age) => age.trim()) };
+    case "pregnancy-prep":
+      return { ttcNotes: body.ttcNotes!.trim() };
+    case "one-on-one":
+      return { goals: body.goals!.trim() };
+    default:
+      return {};
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -120,12 +159,7 @@ export async function POST(request: NextRequest) {
 
     const name = body.name!.trim();
     const email = body.email!.trim().toLowerCase();
-    const intakeDetails =
-      body.programId === "pregnancy-synced"
-        ? { dueDate: body.dueDate }
-        : body.programId === "postpartum"
-          ? { deliveryDates: body.deliveryDates }
-          : { kidAges: body.kidAges!.map((age) => age.trim()) };
+    const intakeDetails = intakeDetailsFor(body);
 
     const supabase = createServerClient();
     const { data: intake, error: intakeError } = await supabase
@@ -172,6 +206,7 @@ export async function POST(request: NextRequest) {
         intake_id: intake.id,
       },
       subscription_data: {
+        trial_period_days: 7,
         metadata: {
           program_id: body.programId,
           intake_id: intake.id,

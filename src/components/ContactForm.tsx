@@ -11,6 +11,7 @@ import {
 interface ContactFormProps {
   title?: string;
   description?: string;
+  defaultService?: ContactServiceValue;
 }
 
 const inputStyles =
@@ -19,10 +20,11 @@ const inputStyles =
 export default function ContactForm({
   title = "Get in Touch",
   description = "Have a question or not sure where to start? Send a message and Erin will get back to you.",
+  defaultService = "unsure",
 }: ContactFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [service, setService] = useState<ContactServiceValue>("unsure");
+  const [service, setService] = useState<ContactServiceValue>(defaultService);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

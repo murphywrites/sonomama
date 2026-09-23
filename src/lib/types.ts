@@ -29,7 +29,9 @@ export type ProgramFeature = string | ProgramFeatureGroup;
 export type ProgramId =
   | "pregnancy-synced"
   | "postpartum"
-  | "moms-any-phase";
+  | "moms-any-phase"
+  | "pregnancy-prep"
+  | "one-on-one";
 
 export interface Program {
   id: ProgramId;

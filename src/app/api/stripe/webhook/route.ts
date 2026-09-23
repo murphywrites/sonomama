@@ -7,9 +7,11 @@ import { createServerClient } from "@/lib/supabase-server";
 export const runtime = "nodejs";
 
 const PROGRAM_NAMES: Record<string, string> = {
-  "pregnancy-synced": "Pregnancy",
-  postpartum: "Postpartum",
+  "pregnancy-synced": "Pregnancy Plans",
+  postpartum: "Postpartum Plans",
   "moms-any-phase": "Moms in any phase of life",
+  "pregnancy-prep": "Strong Mom Pregnancy Prep",
+  "one-on-one": "1:1 Training",
 };
 
 interface IntakeRecord {
@@ -22,6 +24,8 @@ interface IntakeRecord {
     dueDate?: string;
     deliveryDates?: string[];
     kidAges?: string[];
+    ttcNotes?: string;
+    goals?: string;
   };
 }
 
@@ -62,7 +66,17 @@ function intakeDetailsHtml(intake: IntakeRecord): string {
   }
   if (details.kidAges?.length) {
     lines.push(
-      `<p style="margin:0;"><strong>Kid(s) ages:</strong> ${escapeHtml(details.kidAges.join(", "))}</p>`
+      `<p style="margin:0 0 8px;"><strong>Kid(s) ages:</strong> ${escapeHtml(details.kidAges.join(", "))}</p>`
+    );
+  }
+  if (details.ttcNotes) {
+    lines.push(
+      `<p style="margin:0 0 8px;"><strong>TTC journey:</strong> ${escapeHtml(details.ttcNotes)}</p>`
+    );
+  }
+  if (details.goals) {
+    lines.push(
+      `<p style="margin:0;"><strong>Goals:</strong> ${escapeHtml(details.goals)}</p>`
     );
   }
 
