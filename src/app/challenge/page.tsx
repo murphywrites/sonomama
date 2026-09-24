@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import ContactForm from "@/components/ContactForm";
 import FallChallengeDetails from "@/components/FallChallengeDetails";
+import ProgramCheckoutButton from "@/components/ProgramCheckoutButton";
 import SectionFade from "@/components/SectionFade";
 
 export const metadata: Metadata = {
@@ -9,7 +9,11 @@ export const metadata: Metadata = {
     "A 6-week virtual, self-paced challenge starting October 5. Build functional strength and connect to your core, hips, and pelvic floor.",
 };
 
-export default function ChallengePage() {
+export default function ChallengePage({
+  searchParams,
+}: {
+  searchParams?: { checkout?: string };
+}) {
   return (
     <>
       <section className="relative overflow-hidden bg-cream pt-32 pb-12 md:pt-40 md:pb-16">
@@ -31,18 +35,43 @@ export default function ChallengePage() {
         <SectionFade to="white" />
       </section>
 
+      {searchParams?.checkout === "success" && (
+        <div
+          role="status"
+          className="bg-sage/20 px-6 py-4 text-center font-inter text-sm text-olive"
+        >
+          Thank you! Your payment was submitted successfully. Erin will follow
+          up by email.
+        </div>
+      )}
+
       <section className="relative overflow-hidden bg-white pb-24 md:pb-32">
         <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-24">
           <FallChallengeDetails />
-        </div>
-        <SectionFade to="cream" />
-      </section>
 
-      <ContactForm
-        title="Interested in joining?"
-        description="Send Erin a message about the Fall Strong Mom Challenge and she’ll follow up with how to get started."
-        defaultService="fall-challenge"
-      />
+          <div className="mt-10 rounded-2xl border border-blush/60 bg-cream px-6 py-8 md:px-10">
+            <div className="flex items-baseline gap-1">
+              <span className="font-cormorant text-3xl font-semibold text-olive">
+                $210
+              </span>
+              <span className="font-inter text-sm text-olive/50">
+                one-time
+              </span>
+            </div>
+            <p className="mt-2 font-inter text-sm text-olive/70">
+              Full access to all 6 weeks of the challenge.
+            </p>
+            <ProgramCheckoutButton
+              programId="fall-challenge"
+              programTitle="Fall Strong Mom Challenge"
+              className="mt-6 w-full justify-center sm:w-auto"
+            >
+              Join the Challenge
+            </ProgramCheckoutButton>
+          </div>
+        </div>
+        <SectionFade to="olive" />
+      </section>
     </>
   );
 }

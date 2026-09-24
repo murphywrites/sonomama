@@ -12,6 +12,7 @@ const PROGRAM_NAMES: Record<string, string> = {
   "moms-any-phase": "Moms in any phase of life",
   "pregnancy-prep": "Strong Mom Pregnancy Prep",
   "one-on-one": "1:1 Training",
+  "fall-challenge": "Fall Strong Mom Challenge",
 };
 
 interface IntakeRecord {
@@ -115,12 +116,14 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
 
   const customerId = stripeId(session.customer);
   const subscriptionId = stripeId(session.subscription);
+  const paymentIntentId = stripeId(session.payment_intent);
   const { error: updateError } = await supabase
     .from("program_checkout_intakes")
     .update({
       status: "paid",
       stripe_customer_id: customerId,
       stripe_subscription_id: subscriptionId,
+      stripe_payment_intent_id: paymentIntentId,
       amount_total: session.amount_total,
       currency: session.currency,
       paid_at: new Date().toISOString(),
@@ -150,7 +153,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         }).format(session.amount_total / 100)
       : "Not available";
   const programName = PROGRAM_NAMES[intake.program_id] ?? intake.program_id;
-  const orderNumber = subscriptionId ?? session.id;
+  const orderNumber = subscriptionId ?? paymentIntentId ?? session.id;
   const formDetailsHtml = intakeDetailsHtml(intake);
   const resend = new Resend(resendApiKey);
 
@@ -172,6 +175,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
           <p><strong>Payment status:</strong> ${escapeHtml(session.payment_status)}</p>
           <p><strong>Checkout Session:</strong> ${escapeHtml(session.id)}</p>
           <p><strong>Subscription:</strong> ${escapeHtml(subscriptionId ?? "Not available")}</p>
+          <p><strong>Payment Intent:</strong> ${escapeHtml(paymentIntentId ?? "Not available")}</p>
           <p><strong>Customer:</strong> ${escapeHtml(customerId ?? "Not available")}</p>
         `,
       },

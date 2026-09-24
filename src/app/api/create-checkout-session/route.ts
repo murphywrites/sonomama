@@ -11,22 +11,38 @@ const PROGRAMS = {
   "pregnancy-synced": {
     name: "Pregnancy Plans",
     priceEnv: "STRIPE_PRICE_PREGNANCY",
+    mode: "subscription",
+    returnPath: "/programs",
   },
   postpartum: {
     name: "Postpartum Plans",
     priceEnv: "STRIPE_PRICE_POSTPARTUM",
+    mode: "subscription",
+    returnPath: "/programs",
   },
   "moms-any-phase": {
     name: "Moms in any phase of life",
     priceEnv: "STRIPE_PRICE_MOMS_ANY_PHASE",
+    mode: "subscription",
+    returnPath: "/programs",
   },
   "pregnancy-prep": {
     name: "Strong Mom Pregnancy Prep",
     priceEnv: "STRIPE_PRICE_PREGNANCY_PREP",
+    mode: "subscription",
+    returnPath: "/programs",
   },
   "one-on-one": {
     name: "1:1 Training",
     priceEnv: "STRIPE_PRICE_ONE_ON_ONE",
+    mode: "subscription",
+    returnPath: "/programs",
+  },
+  "fall-challenge": {
+    name: "Fall Strong Mom Challenge",
+    priceEnv: "STRIPE_PRICE_FALL_CHALLENGE",
+    mode: "payment",
+    returnPath: "/challenge",
   },
 } as const;
 
@@ -147,7 +163,8 @@ export async function POST(request: NextRequest) {
 
     const stripeKey =
       process.env.STRIPE_RESTRICTED_KEY ?? process.env.STRIPE_SECRET_KEY;
-    const priceId = process.env[PROGRAMS[body.programId].priceEnv];
+    const program = PROGRAMS[body.programId];
+    const priceId = process.env[program.priceEnv];
 
     if (!stripeKey || !priceId) {
       console.error("Stripe checkout is missing a Stripe key or program Price ID");
@@ -195,24 +212,21 @@ export async function POST(request: NextRequest) {
       apiVersion: "2026-06-24.dahlia",
     });
     const origin = new URL(request.url).origin;
+    const metadata = {
+      program_id: body.programId,
+      intake_id: intake.id,
+    };
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded_page",
-      mode: "subscription",
+      mode: program.mode,
       customer_email: email,
       client_reference_id: intake.id,
       line_items: [{ price: priceId, quantity: 1 }],
-      metadata: {
-        program_id: body.programId,
-        intake_id: intake.id,
-      },
-      subscription_data: {
-        trial_period_days: 7,
-        metadata: {
-          program_id: body.programId,
-          intake_id: intake.id,
-        },
-      },
-      return_url: `${origin}/programs?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      metadata,
+      ...(program.mode === "subscription"
+        ? { subscription_data: { trial_period_days: 7, metadata } }
+        : { payment_intent_data: { metadata } }),
+      return_url: `${origin}${program.returnPath}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
     });
 
     if (!session.client_secret) {

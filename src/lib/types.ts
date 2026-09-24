@@ -31,7 +31,8 @@ export type ProgramId =
   | "postpartum"
   | "moms-any-phase"
   | "pregnancy-prep"
-  | "one-on-one";
+  | "one-on-one"
+  | "fall-challenge";
 
 export interface Program {
   id: ProgramId;

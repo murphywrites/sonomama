@@ -3,6 +3,7 @@ import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import FallChallengeDetails from "@/components/FallChallengeDetails";
 import ProgramCard from "@/components/ProgramCard";
+import ProgramCheckoutButton from "@/components/ProgramCheckoutButton";
 import SectionFade from "@/components/SectionFade";
 import Button from "@/components/Button";
 import type { Program } from "@/lib/types";
@@ -182,7 +183,13 @@ export default function ProgramsPage({
               the core, hips, and pelvic floor.
             </p>
             <FallChallengeDetails />
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ProgramCheckoutButton
+                programId="fall-challenge"
+                programTitle="Fall Strong Mom Challenge"
+              >
+                Join the Challenge — $210
+              </ProgramCheckoutButton>
               <Button href="/challenge" variant="secondary">
                 View the challenge page
               </Button>
