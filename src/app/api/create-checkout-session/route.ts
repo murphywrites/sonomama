@@ -9,16 +9,40 @@ const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 const PROGRAMS = {
   "pregnancy-synced": {
-    name: "Pregnancy",
+    name: "Pregnancy Plans",
     priceEnv: "STRIPE_PRICE_PREGNANCY",
+    mode: "subscription",
+    returnPath: "/programs",
   },
   postpartum: {
-    name: "Postpartum",
+    name: "Postpartum Plans",
     priceEnv: "STRIPE_PRICE_POSTPARTUM",
+    mode: "subscription",
+    returnPath: "/programs",
   },
   "moms-any-phase": {
     name: "Moms in any phase of life",
     priceEnv: "STRIPE_PRICE_MOMS_ANY_PHASE",
+    mode: "subscription",
+    returnPath: "/programs",
+  },
+  "pregnancy-prep": {
+    name: "Strong Mom Pregnancy Prep",
+    priceEnv: "STRIPE_PRICE_PREGNANCY_PREP",
+    mode: "subscription",
+    returnPath: "/programs",
+  },
+  "one-on-one": {
+    name: "1:1 Training",
+    priceEnv: "STRIPE_PRICE_ONE_ON_ONE",
+    mode: "subscription",
+    returnPath: "/programs",
+  },
+  "fall-challenge": {
+    name: "Fall Strong Mom Challenge",
+    priceEnv: "STRIPE_PRICE_FALL_CHALLENGE",
+    mode: "payment",
+    returnPath: "/challenge",
   },
 } as const;
 
@@ -31,6 +55,8 @@ interface CheckoutBody {
   dueDate?: string;
   deliveryDates?: string[];
   kidAges?: string[];
+  ttcNotes?: string;
+  goals?: string;
 }
 
 function isProgramId(value: string | undefined): value is ProgramId {
@@ -89,7 +115,36 @@ function validateDetails(body: CheckoutBody): string | null {
     }
   }
 
+  if (body.programId === "pregnancy-prep") {
+    if (!body.ttcNotes?.trim() || body.ttcNotes.trim().length > 500) {
+      return "A short note about your TTC journey is required";
+    }
+  }
+
+  if (body.programId === "one-on-one") {
+    if (!body.goals?.trim() || body.goals.trim().length > 1000) {
+      return "A short note about your goals is required";
+    }
+  }
+
   return null;
+}
+
+function intakeDetailsFor(body: CheckoutBody) {
+  switch (body.programId) {
+    case "pregnancy-synced":
+      return { dueDate: body.dueDate };
+    case "postpartum":
+      return { deliveryDates: body.deliveryDates };
+    case "moms-any-phase":
+      return { kidAges: body.kidAges!.map((age) => age.trim()) };
+    case "pregnancy-prep":
+      return { ttcNotes: body.ttcNotes!.trim() };
+    case "one-on-one":
+      return { goals: body.goals!.trim() };
+    default:
+      return {};
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -108,7 +163,8 @@ export async function POST(request: NextRequest) {
 
     const stripeKey =
       process.env.STRIPE_RESTRICTED_KEY ?? process.env.STRIPE_SECRET_KEY;
-    const priceId = process.env[PROGRAMS[body.programId].priceEnv];
+    const program = PROGRAMS[body.programId];
+    const priceId = process.env[program.priceEnv];
 
     if (!stripeKey || !priceId) {
       console.error("Stripe checkout is missing a Stripe key or program Price ID");
@@ -120,12 +176,7 @@ export async function POST(request: NextRequest) {
 
     const name = body.name!.trim();
     const email = body.email!.trim().toLowerCase();
-    const intakeDetails =
-      body.programId === "pregnancy-synced"
-        ? { dueDate: body.dueDate }
-        : body.programId === "postpartum"
-          ? { deliveryDates: body.deliveryDates }
-          : { kidAges: body.kidAges!.map((age) => age.trim()) };
+    const intakeDetails = intakeDetailsFor(body);
 
     const supabase = createServerClient();
     const { data: intake, error: intakeError } = await supabase
@@ -161,23 +212,21 @@ export async function POST(request: NextRequest) {
       apiVersion: "2026-06-24.dahlia",
     });
     const origin = new URL(request.url).origin;
+    const metadata = {
+      program_id: body.programId,
+      intake_id: intake.id,
+    };
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded_page",
-      mode: "subscription",
+      mode: program.mode,
       customer_email: email,
       client_reference_id: intake.id,
       line_items: [{ price: priceId, quantity: 1 }],
-      metadata: {
-        program_id: body.programId,
-        intake_id: intake.id,
-      },
-      subscription_data: {
-        metadata: {
-          program_id: body.programId,
-          intake_id: intake.id,
-        },
-      },
-      return_url: `${origin}/programs?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      metadata,
+      ...(program.mode === "subscription"
+        ? { subscription_data: { trial_period_days: 7, metadata } }
+        : { payment_intent_data: { metadata } }),
+      return_url: `${origin}${program.returnPath}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
     });
 
     if (!session.client_secret) {

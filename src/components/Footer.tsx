@@ -39,6 +39,12 @@ export default function Footer() {
               Programs
             </Link>
             <Link
+              href="/challenge"
+              className="font-inter text-sm text-cream/80 hover:text-cream transition-colors"
+            >
+              Challenge
+            </Link>
+            <Link
               href="/resources"
               className="font-inter text-sm text-cream/80 hover:text-cream transition-colors"
             >

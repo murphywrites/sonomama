@@ -31,6 +31,8 @@ export default function ProgramCheckoutModal({
   const [dueDate, setDueDate] = useState("");
   const [deliveryDates, setDeliveryDates] = useState([""]);
   const [kidAges, setKidAges] = useState([""]);
+  const [ttcNotes, setTtcNotes] = useState("");
+  const [goals, setGoals] = useState("");
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -91,6 +93,8 @@ export default function ProgramCheckoutModal({
           deliveryDates:
             programId === "postpartum" ? deliveryDates : undefined,
           kidAges: programId === "moms-any-phase" ? kidAges : undefined,
+          ttcNotes: programId === "pregnancy-prep" ? ttcNotes : undefined,
+          goals: programId === "one-on-one" ? goals : undefined,
         }),
       });
       const result = (await response.json()) as {
@@ -115,6 +119,7 @@ export default function ProgramCheckoutModal({
   }
 
   const today = new Date().toISOString().slice(0, 10);
+  const isOneTimePurchase = programId === "fall-challenge";
 
   return (
     <div
@@ -176,8 +181,9 @@ export default function ProgramCheckoutModal({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6 px-6 py-7 md:px-8">
             <p className="font-inter text-sm leading-relaxed text-olive/70">
-              Tell Erin a little about where you are now, then continue to
-              secure monthly payment.
+              {isOneTimePurchase
+                ? "Share your name and email, then continue to secure payment. This is a one-time charge for the 6-week challenge."
+                : "Tell Erin a little about where you are now, then continue to secure monthly payment. Every subscription includes a 7-day free trial, so you won’t be charged until the trial ends."}
             </p>
 
             <div>
@@ -337,6 +343,48 @@ export default function ProgramCheckoutModal({
                   + Add another child
                 </button>
               </fieldset>
+            )}
+
+            {programId === "pregnancy-prep" && (
+              <div>
+                <label
+                  htmlFor="pregnancy-prep-notes"
+                  className="mb-2 block font-inter text-sm font-medium text-olive"
+                >
+                  Where are you in your TTC journey?
+                </label>
+                <textarea
+                  id="pregnancy-prep-notes"
+                  required
+                  maxLength={500}
+                  rows={4}
+                  value={ttcNotes}
+                  onChange={(event) => setTtcNotes(event.target.value)}
+                  placeholder="A little context helps Erin set you up in the right place."
+                  className={fieldClasses}
+                />
+              </div>
+            )}
+
+            {programId === "one-on-one" && (
+              <div>
+                <label
+                  htmlFor="one-on-one-goals"
+                  className="mb-2 block font-inter text-sm font-medium text-olive"
+                >
+                  What should Erin know about your goals, schedule, and
+                  equipment?
+                </label>
+                <textarea
+                  id="one-on-one-goals"
+                  required
+                  maxLength={1000}
+                  rows={4}
+                  value={goals}
+                  onChange={(event) => setGoals(event.target.value)}
+                  className={fieldClasses}
+                />
+              </div>
             )}
 
             {error && (
