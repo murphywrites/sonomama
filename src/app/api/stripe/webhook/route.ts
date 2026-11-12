@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 const PROGRAM_NAMES: Record<string, string> = {
   "pregnancy-synced": "Pregnancy Plans",
   postpartum: "Postpartum Plans",
-  "moms-any-phase": "Moms in any phase of life",
+  "moms-any-phase": '"Start with Strength" program for moms in any phase of life',
   "pregnancy-prep": "Strong Mom Pregnancy Prep",
   "one-on-one": "Custom Programming",
   // Completed Fall Strong Mom Challenge payments still email under the original name.

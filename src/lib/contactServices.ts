@@ -2,7 +2,7 @@ export const CONTACT_SERVICES = [
   { value: "unsure", label: "Not sure yet — help me decide" },
   { value: "pregnancy", label: "Pregnancy Plans" },
   { value: "postpartum", label: "Postpartum Plans" },
-  { value: "moms-any-phase", label: "Moms in any phase of life" },
+  { value: "moms-any-phase", label: '"Start with Strength" program for moms in any phase of life' },
   { value: "pregnancy-prep", label: "Strong Mom Pregnancy Prep" },
   { value: "one-on-one", label: "Custom Programming" },
   { value: "new-year-kickoff", label: "New Year Kickoff Challenge" },

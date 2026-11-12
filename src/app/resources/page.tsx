@@ -29,7 +29,7 @@ const programTeasers = [
   },
   {
     id: "moms-any-phase-of-life",
-    title: "Moms in any phase of life",
+    title: '"Start with Strength" program for moms in any phase of life',
     subtitle:
       "3x/week full body strength focused on progressive overload, optional mobility and core work, and a new training block every 6–8 weeks.",
     price: "$135",

@@ -65,10 +65,16 @@ export default function ProgramCard({ program }: ProgramCardProps) {
       )}
 
       <div className="flex flex-col flex-1 h-full lg:p-8">
-        <h3 className="font-cormorant text-2xl font-semibold text-olive mb-6">
-          {program.title}
-        </h3>
-
+        <div className="mb-6">
+            <h3 className="font-cormorant text-2xl font-semibold text-olive">
+              {program.title}
+            </h3>
+            {program.subtitle && (
+              <p className="font-inter text-md text-olive/75 leading-relaxed mt-2">
+                {program.subtitle}
+              </p>
+            )}
+        </div>
         <div className="flex flex-col flex-1 min-h-0">
           <ul className="space-y-3">
             {program.features.map((feature, i) => (

@@ -82,7 +82,8 @@ const programs: Program[] = [
   },
   {
     id: "moms-any-phase",
-    title: "Moms in any phase of life",
+    title: "Start with Strength",
+    subtitle: "Program for moms in any phase of life",
     description:
       "for programming rooted in evidence to get you strong, direct access to a Doctor of Physical Therapy for questions and feedback on form, accountability and support through the ups and downs of motherhood.",
     price: "$135",

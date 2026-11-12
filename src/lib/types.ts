@@ -36,6 +36,7 @@ export type ProgramId =
 export interface Program {
   id: ProgramId;
   title: string;
+  subtitle?: string;
   description: string;
   price?: string;
   priceNote?: string;
