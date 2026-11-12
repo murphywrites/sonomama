@@ -38,12 +38,6 @@ const PROGRAMS = {
     mode: "subscription",
     returnPath: "/programs",
   },
-  "fall-challenge": {
-    name: "Fall Strong Mom Challenge",
-    priceEnv: "STRIPE_PRICE_FALL_CHALLENGE",
-    mode: "payment",
-    returnPath: "/challenge",
-  },
 } as const;
 
 type ProgramId = keyof typeof PROGRAMS;
@@ -223,9 +217,7 @@ export async function POST(request: NextRequest) {
       client_reference_id: intake.id,
       line_items: [{ price: priceId, quantity: 1 }],
       metadata,
-      ...(program.mode === "subscription"
-        ? { subscription_data: { trial_period_days: 7, metadata } }
-        : { payment_intent_data: { metadata } }),
+      subscription_data: { trial_period_days: 7, metadata },
       return_url: `${origin}${program.returnPath}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
     });
 

@@ -119,7 +119,6 @@ export default function ProgramCheckoutModal({
   }
 
   const today = new Date().toISOString().slice(0, 10);
-  const isOneTimePurchase = programId === "fall-challenge";
 
   return (
     <div
@@ -181,9 +180,9 @@ export default function ProgramCheckoutModal({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6 px-6 py-7 md:px-8">
             <p className="font-inter text-sm leading-relaxed text-olive/70">
-              {isOneTimePurchase
-                ? "Share your name and email, then continue to secure payment. This is a one-time charge for the 6-week challenge."
-                : "Tell Erin a little about where you are now, then continue to secure monthly payment. Every subscription includes a 7-day free trial, so you won’t be charged until the trial ends."}
+              Tell Erin a little about where you are now, then continue to
+              secure monthly payment. Every subscription includes a 7-day free
+              trial, so you won’t be charged until the trial ends.
             </p>
 
             <div>

@@ -12,6 +12,7 @@ const PROGRAM_NAMES: Record<string, string> = {
   "moms-any-phase": "Moms in any phase of life",
   "pregnancy-prep": "Strong Mom Pregnancy Prep",
   "one-on-one": "Custom Programming",
+  // Completed Fall Strong Mom Challenge payments still email under the original name.
   "fall-challenge": "Fall Strong Mom Challenge",
 };
 

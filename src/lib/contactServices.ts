@@ -5,7 +5,7 @@ export const CONTACT_SERVICES = [
   { value: "moms-any-phase", label: "Moms in any phase of life" },
   { value: "pregnancy-prep", label: "Strong Mom Pregnancy Prep" },
   { value: "one-on-one", label: "Custom Programming" },
-  { value: "fall-challenge", label: "Fall Strong Mom Challenge" },
+  { value: "new-year-kickoff", label: "New Year Kickoff Challenge" },
   { value: "free-resources", label: "Free resources" },
   { value: "general", label: "General question" },
 ] as const;

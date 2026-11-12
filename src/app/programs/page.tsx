@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
-import FallChallengeDetails from "@/components/FallChallengeDetails";
 import ProgramCard from "@/components/ProgramCard";
-import ProgramCheckoutButton from "@/components/ProgramCheckoutButton";
 import SectionFade from "@/components/SectionFade";
 import Button from "@/components/Button";
 import type { Program } from "@/lib/types";
@@ -180,23 +178,12 @@ export default function ProgramsPage({
               Current or Upcoming Challenges
             </p>
             <h2 className="font-cormorant text-section-mobile md:text-4xl font-semibold text-olive mb-3">
-              Fall Strong Mom Challenge
+              Coming Soon: New Year Kickoff Challenge
             </h2>
-            <p className="mb-4 inline-block rounded-full bg-terracotta px-3 py-1 font-inter text-xs font-medium uppercase tracking-wide text-white">
-              Starts October 5
+            <p className="font-inter text-olive/80 leading-relaxed max-w-3xl">
+              Details and signup will be posted when the challenge opens.
             </p>
-            <p className="font-inter text-olive/80 leading-relaxed mb-6 max-w-3xl">
-              6 weeks focusing on building functional strength and connecting to
-              the core, hips, and pelvic floor.
-            </p>
-            <FallChallengeDetails />
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ProgramCheckoutButton
-                programId="fall-challenge"
-                programTitle="Fall Strong Mom Challenge"
-              >
-                Join the Challenge — $210
-              </ProgramCheckoutButton>
+            <div className="mt-8">
               <Button href="/challenge" variant="secondary">
                 View the challenge page
               </Button>
