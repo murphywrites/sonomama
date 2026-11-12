@@ -21,7 +21,7 @@ const PROGRAMS = {
     returnPath: "/programs",
   },
   "moms-any-phase": {
-    name: "Moms in any phase of life",
+    name: '"Start With Strength" Program for moms in any phase of life',
     priceEnv: "STRIPE_PRICE_MOMS_ANY_PHASE",
     mode: "subscription",
     returnPath: "/programs",
@@ -33,7 +33,7 @@ const PROGRAMS = {
     returnPath: "/programs",
   },
   "one-on-one": {
-    name: "1:1 Training",
+    name: "Custom Programming",
     priceEnv: "STRIPE_PRICE_ONE_ON_ONE",
     mode: "subscription",
     returnPath: "/programs",

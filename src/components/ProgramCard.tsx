@@ -91,7 +91,7 @@ export default function ProgramCard({ program }: ProgramCardProps) {
                 )}
               </div>
               <p className="mt-1 font-inter text-sm text-olive/60">
-                Includes a 7-day free trial
+                {!program.hasTrial ? "" : "Includes a 7-day free trial"}
               </p>
             </div>
           )}

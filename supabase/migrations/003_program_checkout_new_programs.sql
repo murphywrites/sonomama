@@ -1,4 +1,4 @@
--- Allow checkout intakes for Strong Mom Pregnancy Prep and 1:1 Training.
+-- Allow checkout intakes for Strong Mom Pregnancy Prep and Custom Programming.
 ALTER TABLE program_checkout_intakes
   DROP CONSTRAINT IF EXISTS program_checkout_intakes_program_id_check;
 

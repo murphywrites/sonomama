@@ -43,10 +43,11 @@ const programTeasers = [
   },
   {
     id: "one-on-one",
-    title: "1:1 Training",
+    title: "Custom Programming",
     subtitle:
-      "Completely personalized to your stage of life, goals, challenges, time, and equipment.",
+      "Completely personalized to your stage of life, goals, challenges, time, and equipment. Often kicked off with an in-person session with Erin if you are local to the Bay Area.",
     price: "$300",
+    trial: false,
   },
 ];
 

@@ -46,6 +46,7 @@ const programs: Program[] = [
         ],
       },
     ],
+    hasTrial: true,
   },
   {
     id: "postpartum",
@@ -79,6 +80,7 @@ const programs: Program[] = [
         ],
       },
     ],
+    hasTrial: true,
   },
   {
     id: "moms-any-phase",
@@ -94,6 +96,7 @@ const programs: Program[] = [
       "2x/week optional mobility and core connection routines",
       "New training blocks every 6–8 weeks",
     ],
+    hasTrial: true,
   },
   {
     id: "pregnancy-prep",
@@ -108,17 +111,21 @@ const programs: Program[] = [
       "3x/week strength training with special focus on pelvic and core stability",
       "2x/week optional mobility and core connection routines",
     ],
+    hasTrial: true,
   },
   {
     id: "one-on-one",
-    title: "1:1 Training",
-    description: "",
+    title: "Custom Programming",
+    description:
+      "",
     price: "$300",
     priceNote: "/month",
     buttonText: "Get Started",
     features: [
+        "Often kicked off with an in-person session with Erin if you are local to the Bay Area.",
       "Completely personalized to you—your stage of life, your goals, your challenges, your time constraints, and your equipment",
     ],
+    hasTrial: false,
   },
 ];
 

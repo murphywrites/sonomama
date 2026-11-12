@@ -4,7 +4,7 @@ export const CONTACT_SERVICES = [
   { value: "postpartum", label: "Postpartum Plans" },
   { value: "moms-any-phase", label: "Moms in any phase of life" },
   { value: "pregnancy-prep", label: "Strong Mom Pregnancy Prep" },
-  { value: "one-on-one", label: "1:1 Training" },
+  { value: "one-on-one", label: "Custom Programming" },
   { value: "fall-challenge", label: "Fall Strong Mom Challenge" },
   { value: "free-resources", label: "Free resources" },
   { value: "general", label: "General question" },

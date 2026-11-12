@@ -44,6 +44,7 @@ export interface Program {
   thumbnail?: string;
   features: ProgramFeature[];
   badge?: string;
+  hasTrial?: boolean;
 }
 
 export interface Testimonial {

@@ -11,7 +11,7 @@ const PROGRAM_NAMES: Record<string, string> = {
   postpartum: "Postpartum Plans",
   "moms-any-phase": "Moms in any phase of life",
   "pregnancy-prep": "Strong Mom Pregnancy Prep",
-  "one-on-one": "1:1 Training",
+  "one-on-one": "Custom Programming",
   "fall-challenge": "Fall Strong Mom Challenge",
 };
 
